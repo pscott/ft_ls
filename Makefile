@@ -5,7 +5,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c
+SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c
 INCL	:= -I includes/
 
 SRCS	:= $(addprefix $(SRCDIR)/, $(SRC))
@@ -19,7 +19,7 @@ COMP	:= $(CC) $(WFLAGS) $(LS) $(INCL)
 all: $(NAME)
 
 d: all
-	@./$(NAME) || true
+	@./$(NAME) -la
 
 l: all
 	@$(COMP) listdir.c

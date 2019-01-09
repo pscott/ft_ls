@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:07:51 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/09 13:15:29 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	main(int argc, char **argv)
+void	exit_option(char c)
 {
-	t_ls	*ls;
+	printf("ls: illegal option -- %c\n", c);
+	printf("usage: ls [-Ralrt] [file ...]\n");
+	exit(1);
+}
 
-	if (!(ls = (t_ls*)malloc(sizeof(t_ls))))
-		EXIT_MEM;
-//	malloc everything ?
-	(void)argc;
-	if (argv)
-		(*argv)++;
-	parse_arg(argc, argv, ls);
-	print_opt(ls->opt);
-	print_ldir(ls->ldir);
-	return (free_everything(ls));
+void	exit_memory(void)
+{
+	printf("Couldn't malloc.\n");
+	exit(1);
 }

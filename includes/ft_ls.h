@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/08 20:10:29 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/09 13:45:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,57 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-typedef struct	s_opt {
-	char		l;
-	char		rmaj;
-	char		a;
-	char		r;
-	char		t;
-}				t_opt;
+# define EXIT_MEM exit_memory()
 
-typedef struct	s_ldir {
-	char		*path;
-	t_ldir		*next;
-}				t_ldir;
+typedef struct		s_opt {
+	char			rmaj;
+	char			a;
+	char			l;
+	char			r;
+	char			t;
+}					t_opt;
 
-typedef struct	s_ls {
-	t_opt	*opt;
-	t_ldir	*ldir;
-}				t_ls;
+typedef struct		s_ldir {
+	char			*path;
+	struct s_ldir	*next;
+}					t_ldir;
 
-void			parse_arg(char **argv, t_opt *opt);
+typedef struct		s_ls {
+	t_opt			*opt;
+	t_ldir			*ldir;
+}					t_ls;
+
+/*
+ * arg_parser 
+*/
+
+void				parse_arg(int argc, char **argv, t_ls *ls);
+
+/* 
+ * exits
+*/
+
+void				exit_option(char c);
+void				exit_memory(void);
+
+/*
+ * options
+*/
+
+int					add_valid_option(char c, t_opt *opt);
+void				add_option(char *str, t_opt *opt);
+void				init_opt(t_opt *opt);
+
+/*
+ * free
+*/
+
+int					free_everything(t_ls *ls);
+
+/*
+ * print_helpers
+*/
+
+void				print_opt(t_opt *opt);
+void				print_ldir(t_ldir *ldir);
 #endif

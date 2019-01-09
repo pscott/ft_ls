@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   print_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:07:51 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/09 13:43:29 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	main(int argc, char **argv)
+void	print_opt(t_opt *opt)
 {
-	t_ls	*ls;
+	printf("\n\t\tOPT\n");
+	printf("R: %d\t", opt->rmaj);
+	printf("a: %d\t", opt->a);
+	printf("l: %d\t", opt->l);
+	printf("r: %d\t", opt->r);
+	printf("t: %d\n", opt->t);
+}
 
-	if (!(ls = (t_ls*)malloc(sizeof(t_ls))))
-		EXIT_MEM;
-//	malloc everything ?
-	(void)argc;
-	if (argv)
-		(*argv)++;
-	parse_arg(argc, argv, ls);
-	print_opt(ls->opt);
-	print_ldir(ls->ldir);
-	return (free_everything(ls));
+void	print_ldir(t_ldir *ldir)
+{
+	printf("\n\t\tLDIR\n");
+	while (ldir)
+	{
+		printf("PATH: %s\tNEXT: %p\n", ldir->path, ldir->next);
+		ldir = ldir->next;
+	}
 }

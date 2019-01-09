@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:07:51 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/09 12:47:32 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/09 13:06:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	main(int argc, char **argv)
+int		free_everything(t_ls *ls)
 {
-	t_ls	*ls;
+	t_ldir *tmp;
 
-	if (!(ls = (t_ls*)malloc(sizeof(t_ls))))
-		EXIT_MEM;
-//	malloc everything ?
-	(void)argc;
-	if (argv)
-		(*argv)++;
-	parse_arg(argc, argv, ls);
-	print_opt(ls->opt);
-	print_ldir(ls->ldir);
-	return (free_everything(ls));
+	if (ls)
+	{
+		if (ls->opt)
+			free(ls->opt);
+		if (ls->ldir)
+		{
+			while (ls->ldir->next)
+			{
+				tmp = ls->ldir;
+				if (ls->ldir->path)
+					free(ls->ldir->path);
+				ls->ldir = ls->ldir->next;
+				free(tmp);
+			}
+			if (ls->ldir->path)
+				free(ls->ldir->path);
+			free(ls->ldir);
+		}
+		free(ls);
+	}
+	return (0);
 }

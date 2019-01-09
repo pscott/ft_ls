@@ -1,0 +1,8 @@
+If more thqn one operand : non-directory displayed first ; directory and non-dir are sorted SEPARATELY and in lexicographical order.
+-1 -> Default when OUTPUT IS NOT TO A TERMINAL.
+-C -> default when output IS a terminal
+Options qui se overrident -> prendre la derniere;
+if the owner or group names arenot a known user, or -n, the numeric ID is displayed.
+
+
+/dev/random ? fichier null ? fichier sans acces

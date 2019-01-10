@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 19:06:52 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 13:34:19 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 14:27:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "libft.h"
+# include "colors.h"
 # define ULL unsigned long long int
 # define UL unsigned long int
 # define LL long long int

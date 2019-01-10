@@ -6,15 +6,16 @@ NAME	:= ft_ls
 SRCDIR	:= srcs
 
 SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c
-INCL	:= -I includes/
+INCL	:= -I includes/ -I libft/includes
 
+LIBS	:= -L libft -lft
 SRCS	:= $(addprefix $(SRCDIR)/, $(SRC))
 LS		:= $(SRCS)
 
 OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
-COMP	:= $(CC) $(WFLAGS) $(LS) $(INCL)
+COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
 
 all: $(NAME)
 	@make -C libft
@@ -23,20 +24,20 @@ d: all
 	@./$(NAME) -la
 
 l: all
-	@$(COMP) listdir.c
-	@./a.out || true
+	@$(COMP) test.c
+	@./a.out
 
 val: all
 	@valgrind --leak-check=yes ./a.out
 	@$(RM) a.out*
 
 fsa:
-	@$(COMP) -fsanitize=address -g3
+	@$(COMP) $(LS) -fsanitize=address -g3
 	@./a.out
 	@$(RM) a.out*
 
 $(NAME): $(OBJS)
-	$(COMP) -o $(NAME)
+	$(COMP) -o $(NAME) $(LS)
 	
 %.o: %.c $(DEPS)
 	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)

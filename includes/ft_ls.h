@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:45:57 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 15:20:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/stat.h>
 # include <string.h>
 # include <stdlib.h>
+# include "libft.h"
 
 // please check that those libs are allowed 
 # include <fcntl.h>
@@ -39,16 +40,12 @@ typedef struct		s_ldir {
 	struct s_ldir	*next;
 }					t_ldir;
 
-typedef struct		s_ls {
-	t_opt			*opt;
-	t_ldir			*ldir;
-}					t_ls;
-
 /*
  * arg_parser 
 */
 
-void				parse_arg(int argc, char **argv, t_ls *ls);
+t_opt				*malloc_opt(void);
+void				parse_arg(int argc, char **argv, t_opt *opt);
 
 /* 
  * exits
@@ -69,7 +66,7 @@ void				init_opt(t_opt *opt);
  * free
 */
 
-int					free_everything(t_ls *ls);
+void				free_ldir(t_ldir *ldir);
 
 /*
  * print_helpers

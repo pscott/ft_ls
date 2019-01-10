@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:07:51 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 15:20:04 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_ls	*ls;
+	t_opt *opt;
 
-	if (!(ls = (t_ls*)malloc(sizeof(t_ls))))
-		EXIT_MEM;
 //	malloc everything ?
-	(void)argc;
 	if (argv)
 		(*argv)++;
-	parse_arg(argc, argv, ls);
-	print_opt(ls->opt);
-	print_ldir(ls->ldir);
-	return (free_everything(ls));
+	opt = malloc_opt();
+	parse_arg(argc, argv, opt);
+	print_opt(opt);
+	ft_memdel((void*)&opt);
+	return (0);
 }

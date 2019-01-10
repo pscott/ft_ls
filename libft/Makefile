@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2019/01/10 13:45:30 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/10 13:58:14 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ SRCS	:= $(LIBS) $(ITOA) $(PRINTF) $(CONV) $(FORM) $(GETLEN) $(HELPERS) \
 	$(INCREM)
 OBJS	:= $(SRCS:.c=.o)
 DEPS	:= Makefile includes/ft_printf.h includes/libft.h
-NAME	:= libftprintf.a
+NAME	:= libft.a
 
 all: $(NAME)
 	@:

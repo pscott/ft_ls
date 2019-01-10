@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 19:14:07 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 19:17:35 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include "libft.h"
-
-// please check that those libs are allowed 
-# include <fcntl.h>
 # include <stdio.h>
 
 # define EXIT_MEM exit_memory()

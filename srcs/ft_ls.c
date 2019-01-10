@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 18:06:55 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 18:39:14 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ void	ft_ls(const char *path, t_opt *opt)
 	struct dirent	*dirent;
 	DIR				*directory;
 	t_ldir			*ldir;
+	t_ldir			*origin;
 
 	ldir = NULL;
-	if(!(directory = opendir(path)))//TODO: protect
-		return ;//TODO ERR_OPEN;
+	if(!(directory = opendir(path)))
+		exit_open();//TODO: CHECK IF MSG IS CORRECT
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
 		{
 			ldir = create_ldir(path, dirent, opt);
+			origin = ldir;
 		}
 		else
-			add_ldir(ldir, create_ldir(path, dirent, opt));
+			add_ldir(&origin, create_ldir(path, dirent, opt), opt);
 	}
 	print_ldir(ldir, opt);
 	while (ldir)
@@ -39,7 +41,7 @@ void	ft_ls(const char *path, t_opt *opt)
 		}
 		ldir = ldir->next;
 	}
-	//free list
+	free(ldir);
 	return;//TODO: return value
 }
 

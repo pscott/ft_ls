@@ -17,6 +17,7 @@ DEPS	:= Makefile includes/ft_ls.h
 COMP	:= $(CC) $(WFLAGS) $(LS) $(INCL)
 
 all: $(NAME)
+	@make -C libft
 
 d: all
 	@./$(NAME) -la
@@ -41,9 +42,11 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
 
 clean:
+	@make clean -C libft
 	@$(RM) $(OBJS)
 
 fclean: clean
+	@make fclean -C libft
 	@$(RM) $(NAME)
 	@$(RM) a.out
 

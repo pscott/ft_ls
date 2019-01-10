@@ -6,18 +6,11 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 18:01:27 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 19:02:49 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-char		*append_path(const char *path, char *dir_name, t_opt *opt)
-{
-	(void)path;
-	(void)opt;
-	return (dir_name);
-}
 
 t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 {

@@ -1,3 +1,6 @@
 listdir.c
 main.c
 test1
+*.swp
+*.swo
+*dSYM

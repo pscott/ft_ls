@@ -16,7 +16,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -la .
+OPT		:= -la libft
 
 all: $(NAME)
 
@@ -38,7 +38,7 @@ fsa:
 
 $(NAME): $(OBJS)
 	@make -C libft
-	$(COMP) -o $(NAME) $(LS) -g
+	$(COMP) -o $(NAME) $(LS)
 	
 %.o: %.c $(DEPS)
 	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)

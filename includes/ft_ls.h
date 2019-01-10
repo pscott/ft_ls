@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 15:20:06 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 15:59:56 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,11 @@ void				free_ldir(t_ldir *ldir);
 
 void				print_opt(t_opt *opt);
 void				print_ldir(t_ldir *ldir);
+
+/*
+ * ldir
+*/
+
+t_ldir				*create_ldir(char *path, t_opt *opt);
+t_ldir				*add_ldir(t_ldir *ldir, struct dirent *dirent, char *path, t_opt *opt);
 #endif

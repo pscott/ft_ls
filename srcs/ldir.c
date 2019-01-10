@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_parser.c                                       :+:      :+:    :+:   */
+/*   ldir.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 15:59:53 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/10 15:59:20 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_opt *malloc_opt(void)
+t_ldir		*create_ldir(char *path, t_opt *opt)
 {
-	t_opt	*res;
+	t_ldir *ldir;
 
-	if (!(res = (t_opt*)malloc(sizeof(t_opt))))
+	if (!(ldir = (t_ldir*)malloc(sizeof(t_ldir))))
 		EXIT_MEM;
-	init_opt(res);
-	return (res);
-}
-
-void	ft_ls(char *str, t_opt *opt)
-{
-	(void)str;
 	(void)opt;
+	ldir->path = path;
+	ldir->next = NULL;
+	return (ldir);
 }
 
-void	parse_arg(int argc, char **argv, t_opt *opt)
+t_ldir		*add_ldir(t_ldir *ldir, struct dirent *dirent, char *path, t_opt *opt)
 {
-	(argv)++;
-	while (argc && argv && *argv && **argv == '-')
-	{
-		add_option(*argv, opt);
-		argv++;
-		argc--;
-	}
-	while (argc)
-	{
-		ft_ls(*argv, opt);
-		argv++;
-		argc--;
-	}
+	t_ldir *tmp;
+
+	tmp = ldir;
+	while (ldir->next)
+		ldir = ldir->next;
+	ldir->next = create_ldir(append_path(path, *d_name), opt);
+	return (tmp);
 }

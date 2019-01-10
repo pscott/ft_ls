@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 16:07:15 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 18:06:55 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ void	ft_ls(const char *path, t_opt *opt)
 	DIR				*directory;
 	t_ldir			*ldir;
 
+	ldir = NULL;
 	if(!(directory = opendir(path)))//TODO: protect
-		//error
-	while (dirent = readdir)
+		return ;//TODO ERR_OPEN;
+	while ((dirent = readdir(directory)))
 	{
-		add_ldir(ldir, dirent, path, opt);
+		if (!ldir)
+		{
+			ldir = create_ldir(path, dirent, opt);
+		}
+		else
+			add_ldir(ldir, create_ldir(path, dirent, opt));
 	}
 	print_ldir(ldir, opt);
 	while (ldir)
 	{
 		if (ldir->d_type == 8)
 		{
-			printf("%s:\n", ldir->dirname);
 			ft_ls(ldir->path, opt);
 		}
 		ldir = ldir->next;

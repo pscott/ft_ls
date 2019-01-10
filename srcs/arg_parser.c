@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 15:59:53 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 16:26:30 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ t_opt *malloc_opt(void)
 		EXIT_MEM;
 	init_opt(res);
 	return (res);
-}
-
-void	ft_ls(char *str, t_opt *opt)
-{
-	(void)str;
-	(void)opt;
 }
 
 void	parse_arg(int argc, char **argv, t_opt *opt)

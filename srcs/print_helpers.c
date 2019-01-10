@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/09 13:43:29 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/10 18:06:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ void	print_opt(t_opt *opt)
 	printf("t: %d\n", opt->t);
 }
 
-void	print_ldir(t_ldir *ldir)
+void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
 	printf("\n\t\tLDIR\n");
+	(void)opt;
 	while (ldir)
 	{
-		printf("PATH: %s\tNEXT: %p\n", ldir->path, ldir->next);
+		printf("PATH: %20s\tNEXT: %p\n", ldir->path, ldir->next);
 		ldir = ldir->next;
 	}
 }

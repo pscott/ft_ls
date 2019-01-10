@@ -5,7 +5,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c
+SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -16,11 +16,12 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
+OPT		:= -la .
 
 all: $(NAME)
 
 d: all
-	@./$(NAME) -la
+	@./$(NAME) $(OPT)
 
 l: all
 	@$(COMP) test.c
@@ -32,12 +33,12 @@ val: all
 
 fsa:
 	@$(COMP) $(LS) -fsanitize=address -g3
-	@./a.out
+	@./a.out $(OPT)
 	@$(RM) a.out*
 
 $(NAME): $(OBJS)
 	@make -C libft
-	$(COMP) -o $(NAME) $(LS)
+	$(COMP) -o $(NAME) $(LS) -g
 	
 %.o: %.c $(DEPS)
 	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)

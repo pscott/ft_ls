@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/11 14:46:30 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/11 14:50:10 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ void	ft_ls(const char *path, t_opt *opt)
 	}
 	print_ldir(ldir, opt);
 	printf("\n\n");
-	while (ldir)
+	if (opt->rmaj)
 	{
-		if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".") && ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
+		while (ldir)
 		{
-			ft_putendl(ldir->path);
-			ft_ls(ldir->path, opt);
+			if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".")
+					&& ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
+				ft_ls(ldir->path, opt);
+			ldir = ldir->next;
 		}
-		ldir = ldir->next;
 	}
-	free(ldir);
+	ft_memdel((void*)&ldir);
 	return;//TODO: return value
 }
 

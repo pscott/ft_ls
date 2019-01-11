@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/11 13:49:20 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
+/*   Updated: 2019/01/11 15:57:28 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FT_LS_H
 # define FT_LS_H
@@ -68,6 +69,7 @@ void				exit_open(void);
 int					add_valid_option(char c, t_opt *opt);
 void				add_option(char *str, t_opt *opt);
 void				init_opt(t_opt *opt);
+void				opt_l(t_ldir *ldir, t_opt *opt);
 
 /*
  * free

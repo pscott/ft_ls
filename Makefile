@@ -5,7 +5,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c
+SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -20,6 +20,11 @@ OPT		:= -l libft
 
 all: $(NAME)
 
+ben: all
+	echo
+	ls -la
+	echo
+	./ft_ls .
 d: all
 	@./$(NAME) $(OPT)
 

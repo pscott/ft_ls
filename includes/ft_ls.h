@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:52:09 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 19:17:35 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/11 14:42:54 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				exit_open(void);
 int					add_valid_option(char c, t_opt *opt);
 void				add_option(char *str, t_opt *opt);
 void				init_opt(t_opt *opt);
+void				opt_l(t_ldir *ldir, t_opt *opt);
 
 /*
  * free

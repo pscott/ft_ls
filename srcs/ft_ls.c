@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 18:39:14 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/11 14:43:06 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_ls(const char *path, t_opt *opt)
 		else
 			add_ldir(&origin, create_ldir(path, dirent, opt), opt);
 	}
-	print_ldir(ldir, opt);
+	//print_ldir(ldir, opt);
+	opt_l(ldir, opt);
 	while (ldir)
 	{
 		if (ldir->d_type == 8)

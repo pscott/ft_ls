@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/12 12:42:36 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/12 14:25:19 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,37 @@ void	print_opt(t_opt *opt)
 	ft_printf("t: %d\n", opt->t);
 }
 
-void	print_ldir(t_ldir *ldir, t_opt *opt)
+void	print_elle(t_ldir *ldir, t_opt *opt)
 {
 	(void)opt;
 	while (ldir)
 	{
-/*		ft_printf("PATH: %-20sDIR_NAME: %-10s  NEXT: %-15p\tPREV: %p\n", ldir->path, ldir->dir_name, ldir->next, ldir->prev);*/
 		if (ldir->next)
 			ft_printf("%s\t", ldir->dir_name);
 		else
 			ft_printf("%s", ldir->dir_name);
 		ldir = ldir->next;
 	}
-	write(1, "\n", 1);
+	write(1, "\n\n", 2);
+}
+
+void	print_ldir(t_ldir *ldir, t_opt *opt)
+{
+	if(ft_strcmp(ldir->path, opt->arg))
+		ft_printf("%s:\n", ldir->path);
+	if (opt->rmaj)
+		print_elle(ldir, opt);
+	else
+	{
+		while (ldir)
+		{
+			/*		ft_printf("PATH: %-20sDIR_NAME: %-10s  NEXT: %-15p\tPREV: %p\n", ldir->path, ldir->dir_name, ldir->next, ldir->prev);*/
+			if (ldir->next)
+				ft_printf("%s\t", ldir->dir_name);
+			else
+				ft_printf("%s", ldir->dir_name);
+			ldir = ldir->next;
+		}
+		write(1, "\n", 1);
+	}
 }

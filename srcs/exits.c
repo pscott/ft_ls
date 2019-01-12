@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 18:39:34 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/12 12:55:53 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	exit_memory(void)
 	exit(1);
 }
 
-void	exit_open(void)
+void	exit_open(char *dir_name)
 {
-	perror(strerror(errno));
+	printf("ls: %s: No such file or directory\n", dir_name);
 	exit(1);
 }

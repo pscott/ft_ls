@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/12 12:44:25 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/12 14:24:43 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_ls(const char *path, t_opt *opt)
 
 	ldir = NULL;
 	if(!(directory = opendir(path)))
-		exit_open();//TODO: CHECK IF MSG IS CORRECT
+		exit_open((char*)path);//TODO: CHECK IF MSG IS CORRECT
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
@@ -39,7 +39,7 @@ void	ft_ls(const char *path, t_opt *opt)
 			{
 				if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".")
 						&& ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
-					ft_ls(ldir->path, opt);
+				ft_ls(append_path(ldir->path, ldir->dir_name, opt), opt);
 				ldir = ldir->next;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/11 15:57:28 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/12 14:25:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
+	char			*arg;
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -60,7 +61,7 @@ void				parse_arg(int argc, char **argv, t_opt *opt);
 
 void				exit_option(char c);
 void				exit_memory(void);
-void				exit_open(void);
+void				exit_open(char *dir_name);
 
 /*
  * options

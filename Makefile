@@ -1,5 +1,5 @@
 CC		:= gcc
-WFLAGS	:= -Wall -Wextra -g
+WFLAGS	:= -Wall -Wextra
 RM		:= rm -rf
 NAME	:= ft_ls 
 
@@ -16,9 +16,19 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -l libft 
+OPT		:=  includes
 
 all: $(NAME)
+
+diff: all
+	@./$(NAME) $(OPT) > a
+	@ls -C $(OPT) > b
+	@diff a b
+	@$(RM) a
+	@$(RM) b
+
+ls: all
+	@ls -C $(OPT)
 
 d: all
 	@./$(NAME) $(OPT)
@@ -45,6 +55,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@make clean -C libft
+	@$(RM) *dSYM*
 	@$(RM) $(OBJS)
 
 fclean: clean

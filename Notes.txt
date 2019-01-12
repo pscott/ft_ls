@@ -6,3 +6,24 @@ if the owner or group names arenot a known user, or -n, the numeric ID is displa
 
 
 /dev/random ? fichier null ? fichier sans acces
+
+-a
+-R
+-l
+-r
+-t
+
+-A ?
+-c
+-d
+-F
+-f ?
+-G
+-i
+-H
+-o
+-P (cancels -H and -L)
+-p
+-S
+-u
+-U

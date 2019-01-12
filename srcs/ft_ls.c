@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:51:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/11 14:50:10 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/12 11:58:51 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_ls(const char *path, t_opt *opt)
 	struct dirent	*dirent;
 	DIR				*directory;
 	t_ldir			*ldir;
-	t_ldir			*origin;
 
 	ldir = NULL;
 	if(!(directory = opendir(path)))
@@ -25,26 +24,27 @@ void	ft_ls(const char *path, t_opt *opt)
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
-		{
 			ldir = create_ldir(path, dirent, opt);
-			origin = ldir;
-		}
 		else
-			add_ldir(&origin, create_ldir(path, dirent, opt), opt);
+			add_ldir(&ldir, create_ldir(path, dirent, opt), opt);
 	}
-	print_ldir(ldir, opt);
-	printf("\n\n");
-	if (opt->rmaj)
+	if (ldir)
 	{
-		while (ldir)
+		while(ldir->prev)
+			ldir = ldir->prev;
+		print_ldir(ldir, opt);
+		if (opt->rmaj)
 		{
-			if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".")
-					&& ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
-				ft_ls(ldir->path, opt);
-			ldir = ldir->next;
+			while (ldir)
+			{
+				if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".")
+						&& ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
+					ft_ls(ldir->path, opt);
+				ldir = ldir->next;
+			}
 		}
+		ft_memdel((void*)&ldir);
 	}
-	ft_memdel((void*)&ldir);
 	return;//TODO: return value
 }
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 		(*argv)++;
 	opt = malloc_opt();
 	parse_arg(argc - 1, argv, opt);
-	print_opt(opt);
+//	print_opt(opt);
 	ft_memdel((void*)&opt);
 	return (0);
 }

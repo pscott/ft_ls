@@ -6,13 +6,13 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 13:25:04 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 14:22:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_ls(const char *path, t_opt *opt)
+int		ft_ls(const char *path, t_opt opt)
 {
 	struct dirent	*dirent;
 	DIR				*directory;
@@ -21,29 +21,29 @@ int		ft_ls(const char *path, t_opt *opt)
 
 	ldir = NULL;
 	ret = 0;
-	if(ft_strcmp(path, opt->arg))
+	if(ft_strcmp(path, opt.arg))
 		ft_printf("%s:\n", path);
 	if(!(directory = opendir(path)))
 		return (exit_open((char*)path));//TODO: CHECK IF MSG IS CORRECT
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
-			ldir = create_ldir(path, dirent, opt);
+			ldir = create_ldir(path, dirent, &opt);
 		else
-			add_ldir(&ldir, create_ldir(path, dirent, opt), opt);
+			add_ldir(&ldir, create_ldir(path, dirent, &opt), &opt);
 	}
 	if (ldir)
 	{
 		while(ldir->prev)//TODO: fix this pls
 			ldir = ldir->prev;
-		print_ldir(ldir, opt);
-		if (opt->rmaj)
+		print_ldir(ldir, &opt);
+		if (opt.rmaj)
 		{
 			while (ldir)
 			{
 				if (ldir->d_type == 4 && ft_strncmp(ldir->dir_name, ".", 1)
 						&& ft_strncmp(ldir->dir_name, "..", 2)) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
-				if (ft_ls(append_path(ldir->path, ldir->dir_name, opt), opt))
+				if (ft_ls(append_path(ldir->path, ldir->dir_name, &opt), opt))
 					ret = 1;
 				ldir = ldir->next;
 			}

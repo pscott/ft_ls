@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 13:24:49 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 14:26:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_ldir {
  * ft_ls
 */
 
-int					ft_ls(const char *path, t_opt *opt);
+int					ft_ls(const char *path, t_opt opt);
 
 /*
  * arg_parser 

@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/12 14:25:24 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 13:24:49 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ typedef struct		s_ldir {
  * ft_ls
 */
 
-void				ft_ls(const char *path, t_opt *opt);
+int					ft_ls(const char *path, t_opt *opt);
 
 /*
  * arg_parser 
 */
 
 t_opt				*malloc_opt(void);
-void				parse_arg(int argc, char **argv, t_opt *opt);
+int					parse_arg(int argc, char **argv, t_opt *opt);
 
 /* 
  * exits
@@ -61,7 +61,7 @@ void				parse_arg(int argc, char **argv, t_opt *opt);
 
 void				exit_option(char c);
 void				exit_memory(void);
-void				exit_open(char *dir_name);
+int					exit_open(char *dir_name);
 
 /*
  * options

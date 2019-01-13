@@ -6,21 +6,25 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/12 14:24:43 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 13:25:04 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_ls(const char *path, t_opt *opt)
+int		ft_ls(const char *path, t_opt *opt)
 {
 	struct dirent	*dirent;
 	DIR				*directory;
 	t_ldir			*ldir;
+	int				ret;
 
 	ldir = NULL;
+	ret = 0;
+	if(ft_strcmp(path, opt->arg))
+		ft_printf("%s:\n", path);
 	if(!(directory = opendir(path)))
-		exit_open((char*)path);//TODO: CHECK IF MSG IS CORRECT
+		return (exit_open((char*)path));//TODO: CHECK IF MSG IS CORRECT
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
@@ -30,34 +34,36 @@ void	ft_ls(const char *path, t_opt *opt)
 	}
 	if (ldir)
 	{
-		while(ldir->prev)
+		while(ldir->prev)//TODO: fix this pls
 			ldir = ldir->prev;
 		print_ldir(ldir, opt);
 		if (opt->rmaj)
 		{
 			while (ldir)
 			{
-				if (ldir->d_type == 4 && ft_strcmp(ldir->dir_name, ".")
-						&& ft_strcmp(ldir->dir_name, "..")) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
-				ft_ls(append_path(ldir->path, ldir->dir_name, opt), opt);
+				if (ldir->d_type == 4 && ft_strncmp(ldir->dir_name, ".", 1)
+						&& ft_strncmp(ldir->dir_name, "..", 2)) //TODO: not worth checking strcmps twice (once in create ldir, second time here)
+				if (ft_ls(append_path(ldir->path, ldir->dir_name, opt), opt))
+					ret = 1;
 				ldir = ldir->next;
 			}
 		}
 		ft_memdel((void*)&ldir);
 	}
-	return;//TODO: return value
+	return (ret);//TODO: return value
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	t_opt *opt;
+	t_opt	*opt;
+	int		ret;
 
 	//	malloc everything ?
 	if (argv)
 		(*argv)++;
 	opt = malloc_opt();
-	parse_arg(argc - 1, argv, opt);
+	ret = parse_arg(argc - 1, argv, opt);
 //	print_opt(opt);
 	ft_memdel((void*)&opt);
-	return (0);
+	return (ret);
 }

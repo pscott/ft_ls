@@ -1,7 +1,8 @@
-listdir.c
-main.c
-test1
+*listdir.c
+*main.c
+*test1
 *.swp
 *.swo
 *dSYM
 *q
+*cannot*

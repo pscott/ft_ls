@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/12 14:25:19 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 13:15:02 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	print_elle(t_ldir *ldir, t_opt *opt)
 
 void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
-	if(ft_strcmp(ldir->path, opt->arg))
-		ft_printf("%s:\n", ldir->path);
 	if (opt->rmaj)
 		print_elle(ldir, opt);
 	else

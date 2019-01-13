@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:24:01 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/10 19:03:13 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/13 13:42:20 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,18 @@
 char	*append_path(const char *path, const char *dir_name, t_opt *opt)
 {
 	int		len;
-	int		i;
-	int		j;
 	char	*res;
+	int		pathlen;
+	int		dirlen;
 
-	len = ft_strlen(path) + ft_strlen(dir_name) + 1;
+	pathlen = ft_strlen(path);
+	dirlen = ft_strlen(dir_name);
+	len = pathlen + dirlen + 1;
 	if (!(res = ft_strnew(len + 1)))
 		return (NULL);
-	ft_strncpy(res, path, len);
-	res[ft_strlen(path)] = '/';
-	i = ft_strlen(path) + 1;
-	j = 0;
-	while (i < len)
-	{
-		res[i] = dir_name[j];
-		i++;
-		j++;
-	}
-	res[i] = 0;
+	ft_strncpy(res, path, pathlen);
+	res[pathlen] = '/';
+	ft_strncpy((res + pathlen + 1), dir_name, dirlen);
 	(void)opt;//TODO
 	return (res);
 }

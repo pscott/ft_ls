@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/13 13:18:05 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 13:36:47 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	exit_memory(void)
 
 int		exit_open(char *dir_name)
 {
-	printf("ls: %s: No such file or directory\n", dir_name);
+	if (errno == 13)
+		ft_printf("ls: %s: Permission denied\n", dir_name);
+	else if (errno == 20)
+		ft_printf("ls: %s: No such file or directory\n", dir_name);
+	else
+		ft_printf("Unknown open error\n");
 	return (1);
 }

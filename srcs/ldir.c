@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 18:48:06 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:53:46 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 {
 	t_ldir *ldir;
 
-	if (opt->a == 0 && (ft_strncmp(dirent->d_name, ".", 1) == 0 || ft_strncmp("..", dirent->d_name, 2) == 0))
+	if (opt->a == 0 && (ft_strncmp(dirent->d_name, ".", 1) == 0
+				|| ft_strncmp("..", dirent->d_name, 2) == 0))
 		return (NULL);
 	if (!(ldir = (t_ldir*)malloc(sizeof(t_ldir))))
 		ERROR_MEM;
@@ -58,18 +59,19 @@ void		add_left(t_ldir *c, t_ldir *b)
 void		add_ldir(t_ldir **ldir, t_ldir *new, t_opt *opt)
 {
 	(void)opt;
-
 	if (!new)
 		return ;
 	if (ft_strcmp(new->dir_name, (*ldir)->dir_name) > 0)
 	{
-		while ((*ldir)->next && ft_strcmp(new->dir_name, (*ldir)->next->dir_name) > 0)
+		while ((*ldir)->next && ft_strcmp(new->dir_name,
+					(*ldir)->next->dir_name) > 0)
 			*ldir = (*ldir)->next;
 		add_right(*ldir, new);
 	}
 	else
 	{
-		while ((*ldir)->prev && ft_strcmp(new->dir_name, (*ldir)->next->dir_name) < 0)
+		while ((*ldir)->prev && ft_strcmp(new->dir_name,
+					(*ldir)->next->dir_name) < 0)
 			*ldir = (*ldir)->prev;
 		add_left(*ldir, new);
 	}

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:07:13 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 18:48:29 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:30:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int		add_valid_option(char c, t_opt *opt)
 
 void	add_option(char *str, t_opt *opt)
 {
-	// tester avec str == NULL ?
-
 	str++;
 	while (*str)
 	{

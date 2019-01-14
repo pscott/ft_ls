@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 18:37:56 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:30:30 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,12 @@ void	print_elle(t_ldir *ldir, t_opt *opt)
 
 void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
-	//int max_name_len;
 	if (opt->rmaj)
 		print_elle(ldir, opt);
 	else
 	{
-		//max_name_len = opt->maxp.name;
 		while (ldir)
 		{
-			/*		ft_printf("PATH: %-20sDIR_NAME: %-10s  NEXT: %-15p\tPREV: %p\n", ldir->path, ldir->dir_name, ldir->next, ldir->prev);*/
 			if (ldir->next)
 				ft_printf("%s\t", ldir->dir_name);
 			else

@@ -6,10 +6,9 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/14 19:23:02 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:48:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_LS_H
 # define FT_LS_H
@@ -43,20 +42,20 @@ typedef struct		s_ldir {
 }					t_ldir;
 
 /*
- * ft_ls
+ ** ft_ls
 */
 
 int					ft_ls(const char *path, t_opt opt);
 
 /*
- * arg_parser 
+** arg_parser
 */
 
 t_opt				*malloc_opt(void);
 int					parse_arg(int argc, char **argv, t_opt *opt);
 
-/* 
- * errors
+/*
+ ** errors
 */
 
 void				error_option(char c);
@@ -64,7 +63,7 @@ void				error_memory(void);
 int					error_open(char *dir_name);
 
 /*
- * options
+ ** options
 */
 
 int					add_valid_option(char c, t_opt *opt);
@@ -73,36 +72,45 @@ void				init_opt(t_opt *opt);
 void				opt_l(t_ldir *ldir, t_opt *opt);
 
 /*
- * free
+ ** free
 */
 
 void				free_ldir(t_ldir *ldir);
 
 /*
- * print_helpers
+ ** print_helpers
 */
 
 void				print_opt(t_opt *opt);
 void				print_ldir(t_ldir *ldir, t_opt *opt);
 
 /*
- * ldir
+ ** ldir
 */
 
 void				add_right(t_ldir *ldir, t_ldir *new_l);
 void				add_right(t_ldir *ldir, t_ldir *new_l);
-t_ldir				*create_ldir(const char *path, struct dirent *dirent, t_opt *opt);
+t_ldir				*create_ldir(const char *path, struct dirent *dirent,
+		t_opt *opt);
 void				add_ldir(t_ldir **ldir, t_ldir *newldir, t_opt *opt);
 
 /*
-**	append_path
+ **	append_path
 */
 
-char				*append_path(const char *path, const char *dir_name, t_opt *opt);
+char				*append_path(const char *path, const char *dir_name,
+		t_opt *opt);
 
 /*
-** open_once
-*/ 
+ ** open_once
+*/
 
-int 				open_once(int argc, char **argv);
+int					open_once(int argc, char **argv);
+
+/*
+ ** recursion
+*/
+
+void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
+
 #endif

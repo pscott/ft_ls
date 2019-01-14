@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 19:23:03 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:28:39 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_opt *malloc_opt(void)
+t_opt	*malloc_opt(void)
 {
 	t_opt	*res;
 

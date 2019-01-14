@@ -5,7 +5,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c
+SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft

@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/14 18:21:01 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/14 20:22:56 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,11 @@ void	opt_l(t_ldir *ldir, t_opt *opt)
 	while (ldir)
 	{
 		if (stat(append_path(ldir->path, ldir->dir_name, opt), &filestat) == -1)//TODO: protect
-		{
 			printf("error, %s\n", ldir->dir_name);//TODO
-		}
 		permi = bitwise(ldir, filestat.st_mode);
 		passwd = getpwuid(filestat.st_uid);
 		group = getgrgid(filestat.st_gid);
-		ft_printf("%s %*d %*s %*s %*lld %s\n", permi, opt->maxp.nlink, filestat.st_nlink, opt->maxp.owner, passwd->pw_name, opt->maxp.group, group->gr_name, opt->maxp.size, filestat.st_size, ldir->dir_name);
-		//ft_printf("%s %10d %10s %10lld %s\n", permi, filestat.st_nlink, passwd->pw_name, filestat.st_size, ldir->dir_name);
+		ft_printf("%s %*d %*s  %*-s  %*lld %.12s %s\n", permi, opt->maxp.nlink, filestat.st_nlink, opt->maxp.owner, passwd->pw_name, opt->maxp.group, group->gr_name, opt->maxp.size, filestat.st_size, ctime(&filestat.st_mtime) + 4, ldir->dir_name);
 		ldir = ldir->next;
 	}
 }

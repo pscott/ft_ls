@@ -16,7 +16,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -R includes
+OPT		:= -l permi_tmp
 
 all: $(NAME)
 
@@ -44,8 +44,8 @@ l: all
 	@./a.out
 
 val: all
-	@valgrind --leak-check=yes ./a.out
-	@$(RM) a.out*
+	@valgrind --leak-check=yes ./$(NAME)
+	@$(RM) $(NAME)
 
 fsa:
 	@$(COMP) $(LS) -fsanitize=address -g3

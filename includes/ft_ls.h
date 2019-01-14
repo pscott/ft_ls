@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 13:24:49 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 18:16:21 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,19 @@
 # include <stdlib.h>
 # include "libft.h"
 # include <stdio.h>
+# include <uuid/uuid.h>//ben
+# include <pwd.h>//ben
+# include <grp.h>//ben
 
 # define EXIT_MEM exit_memory()
+
+typedef struct		s_maxp {
+	unsigned int	nlink;
+	unsigned int	owner;
+	unsigned int	group;
+	unsigned int	size;
+	unsigned int	name;
+}					t_maxp;
 
 typedef struct		s_opt {
 	char			rmaj;
@@ -31,7 +42,8 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
-	char			*arg;
+	char			*arg;//ben
+	struct s_maxp	maxp;
 }					t_opt;
 
 typedef struct		s_ldir {

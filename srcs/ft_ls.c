@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 13:25:04 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/13 16:56:36 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@ int		ft_ls(const char *path, t_opt *opt)
 	{
 		while(ldir->prev)//TODO: fix this pls
 			ldir = ldir->prev;
-		print_ldir(ldir, opt);
+		if (!(opt->l))
+			print_ldir(ldir, opt);
+		else
+		{
+			print_opt(opt);//benz
+			opt_l(ldir, opt);//benz
+		}
 		if (opt->rmaj)
 		{
 			while (ldir)

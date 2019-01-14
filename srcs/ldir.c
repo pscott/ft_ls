@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/13 14:26:08 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 18:48:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	if (opt->a == 0 && (ft_strncmp(dirent->d_name, ".", 1) == 0 || ft_strncmp("..", dirent->d_name, 2) == 0))
 		return (NULL);
 	if (!(ldir = (t_ldir*)malloc(sizeof(t_ldir))))
-		EXIT_MEM;
+		ERROR_MEM;
 	(void)opt;
 	ldir->path = (char*)path;
 	ldir->dir_name = dirent->d_name;

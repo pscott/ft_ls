@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 14:22:28 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:21:38 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int		ft_ls(const char *path, t_opt opt)
 
 	ldir = NULL;
 	ret = 0;
-	if(ft_strcmp(path, opt.arg))
+	if (!(directory = opendir(path)))
+		return (1);
+	if (ft_strncmp(path, ".", 1))
 		ft_printf("%s:\n", path);
-	if(!(directory = opendir(path)))
-		return (exit_open((char*)path));//TODO: CHECK IF MSG IS CORRECT
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
@@ -34,7 +34,7 @@ int		ft_ls(const char *path, t_opt opt)
 	}
 	if (ldir)
 	{
-		while(ldir->prev)//TODO: fix this pls
+		while(ldir->prev)//TODO: fix this pls (ldir->prev)
 			ldir = ldir->prev;
 		print_ldir(ldir, &opt);
 		if (opt.rmaj)
@@ -50,20 +50,18 @@ int		ft_ls(const char *path, t_opt opt)
 		}
 		ft_memdel((void*)&ldir);
 	}
-	return (ret);//TODO: return value
-}
+	(void)closedir(directory);
+	return (ret);}
 
 int		main(int argc, char **argv)
 {
 	t_opt	*opt;
 	int		ret;
 
-	//	malloc everything ?
 	if (argv)
 		(*argv)++;
 	opt = malloc_opt();
 	ret = parse_arg(argc - 1, argv, opt);
-//	print_opt(opt);
 	ft_memdel((void*)&opt);
 	return (ret);
 }

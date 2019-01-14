@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 14:26:09 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 19:23:02 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "libft.h"
 # include <stdio.h>
 
-# define EXIT_MEM exit_memory()
+# define ERROR_MEM error_memory()
 
 typedef struct		s_opt {
 	char			rmaj;
@@ -56,12 +56,12 @@ t_opt				*malloc_opt(void);
 int					parse_arg(int argc, char **argv, t_opt *opt);
 
 /* 
- * exits
+ * errors
 */
 
-void				exit_option(char c);
-void				exit_memory(void);
-int					exit_open(char *dir_name);
+void				error_option(char c);
+void				error_memory(void);
+int					error_open(char *dir_name);
 
 /*
  * options
@@ -100,4 +100,9 @@ void				add_ldir(t_ldir **ldir, t_ldir *newldir, t_opt *opt);
 
 char				*append_path(const char *path, const char *dir_name, t_opt *opt);
 
+/*
+** open_once
+*/ 
+
+int 				open_once(int argc, char **argv);
 #endif

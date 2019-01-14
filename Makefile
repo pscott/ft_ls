@@ -16,7 +16,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= /
+OPT		:= -R includes/empty
 
 all: $(NAME)
 

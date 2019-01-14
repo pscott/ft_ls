@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 19:53:46 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/14 20:09:23 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		add_ldir(t_ldir **ldir, t_ldir *new, t_opt *opt)
 	else
 	{
 		while ((*ldir)->prev && ft_strcmp(new->dir_name,
-					(*ldir)->next->dir_name) < 0)
+					(*ldir)->prev->dir_name) < 0)
 			*ldir = (*ldir)->prev;
 		add_left(*ldir, new);
 	}

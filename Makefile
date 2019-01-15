@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
+#    Updated: 2019/01/15 13:57:34 by pscott           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC		:= gcc
 WFLAGS	:= -Wall -Wextra
 RM		:= rm -rf
@@ -16,11 +28,11 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -R includes/empty
+OPT		:= -R includes
 
-all: makelib $(NAME)
+all: $(NAME) makelib
 
-makelib: 
+makelib:
 	@make -C libft
 
 diff: all

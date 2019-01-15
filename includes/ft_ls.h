@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/14 19:48:24 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/15 13:59:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_opt {
 	char			r;
 	char			t;
 	char			*arg;
+	int				argc;
 }					t_opt;
 
 typedef struct		s_ldir {

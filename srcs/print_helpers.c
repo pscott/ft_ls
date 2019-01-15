@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 19:30:30 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/15 14:07:31 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,25 @@ void	print_elle(t_ldir *ldir, t_opt *opt)
 			ft_printf("%s", ldir->dir_name);
 		ldir = ldir->next;
 	}
-	write(1, "\n\n", 2);
+	write(1, "\n", 1);
 }
 
 void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
-	if (opt->rmaj)
+	if (!ldir)
+	{
+		write(1, "\n", 1);
+		return ;
+	}
+	if (opt->l)
 		print_elle(ldir, opt);
 	else
 	{
-		while (ldir)
+		while (ldir->next)
 		{
-			if (ldir->next)
-				ft_printf("%s\t", ldir->dir_name);
-			else
-				ft_printf("%s", ldir->dir_name);
+			ft_printf("%s\t", ldir->dir_name);
 			ldir = ldir->next;
 		}
-		write(1, "\n", 1);
+		ft_printf("%s\n", ldir->dir_name);
 	}
 }

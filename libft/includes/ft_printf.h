@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 19:06:52 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 14:27:06 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 18:03:22 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define BASE_8 "012345678"
 # define BASE_16_LOW "0123456789abcdef"
 # define BASE_16_UP "0123456789ABCDEF"
+# define INIT_LEN 32
 
 typedef struct	s_arg
 {

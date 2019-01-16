@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/14 18:47:20 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/16 15:27:24 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <pwd.h>//ben
 # include <grp.h>//ben
 # include <time.h>//ben
+# include <sys/xattr.h>//ben
 
 # define EXIT_MEM exit_memory()
 
@@ -113,4 +114,21 @@ void				add_ldir(t_ldir **ldir, t_ldir *newldir, t_opt *opt);
 
 char				*append_path(const char *path, const char *dir_name, t_opt *opt);
 
+/*
+ *	time stuff
+*/
+
+char				*get_time(time_t times);
+
+/*
+ *	xattribute
+*/ 
+
+char				get_attr_char(char *path);
+
+/*
+ *	links
+*/
+
+char				*get_symlink(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 #endif

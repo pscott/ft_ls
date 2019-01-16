@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/13 16:56:36 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/16 16:45:33 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_ls(const char *path, t_opt *opt)
 			print_ldir(ldir, opt);
 		else
 		{
-			print_opt(opt);//benz
+			//print_opt(opt);//benz
 			opt_l(ldir, opt);//benz
 		}
 		if (opt->rmaj)

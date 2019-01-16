@@ -5,7 +5,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c
+SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c time_utils.c xattr.c link_utils.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -16,7 +16,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -l /
+OPT		:= -l .
 
 all: $(NAME)
 
@@ -29,12 +29,6 @@ diff: all
 
 ls: all
 	@ls -C $(OPT)
-
-ben: all
-	echo
-	ls -la
-	echo
-	./ft_ls .
 
 d: all
 	@./$(NAME) $(OPT)

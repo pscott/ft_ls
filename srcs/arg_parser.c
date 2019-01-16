@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/16 14:23:28 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 21:55:55 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,20 @@ int		parse_arg(int argc, char **argv, t_opt *opt)
 		argv++;
 		argc--;
 	}
+	//TODO:sort_argv(argc, argv);
 	modif = open_once(argc, argv);
+	argc = argc - modif;
 	opt->argc = argc;
-	while (argc)
+	while (argc > 0)
 	{
 		opt->arg = *argv;
+		opt->currargc = argc;
+		opt->dircount = 0;
 		if (ft_ls(*argv, *opt))
 			ret = 1;
 		argv++;
 		argc--;
-		if (argc - modif > 0)
+		if (argc > 0 && !opt->rmaj)
 			write(1, "\n", 1);
 	}
 	return (ret);

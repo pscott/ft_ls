@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 14:26:16 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 21:53:11 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		ft_ls(const char *path, t_opt opt)
 	if (opt.argc > 1)
 		ft_printf("%s:\n", path);
 	print_ldir(ldir, &opt);
+	if (opt.currargc > 1)
+		write(1, "\n", 1);
 	if (opt.rmaj)
 		recursion(ldir, &ret, &opt);
 	ft_memdel((void*)&ldir);

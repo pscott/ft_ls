@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 20:09:23 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 21:55:56 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	ldir->path = (char*)path;
 	ldir->dir_name = dirent->d_name;
 	ldir->d_type = dirent->d_type;
+	if (ldir->d_type == 4)
+		opt->dircount++;
 	ldir->next = NULL;
 	ldir->prev = NULL;
 	return (ldir);

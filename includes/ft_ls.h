@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/15 13:59:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 21:53:43 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_opt {
 	char			t;
 	char			*arg;
 	int				argc;
+	int				currargc;
+	int				dircount;
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -113,5 +115,6 @@ int					open_once(int argc, char **argv);
 */
 
 void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
+int				is_last(t_ldir *ldir, t_opt *opt);
 
 #endif

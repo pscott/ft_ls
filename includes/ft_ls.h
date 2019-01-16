@@ -6,7 +6,11 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/01/16 18:08:37 by penzo            ###   ########.fr       */
+=======
+/*   Updated: 2019/01/16 15:27:24 by penzo            ###   ########.fr       */
+>>>>>>> opt_l
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +25,21 @@
 # include <stdlib.h>
 # include "libft.h"
 # include <stdio.h>
+# include <uuid/uuid.h>//ben
+# include <pwd.h>//ben
+# include <grp.h>//ben
+# include <time.h>//ben
+# include <sys/xattr.h>//ben
 
 # define ERROR_MEM error_memory()
+
+typedef struct		s_maxp {
+	unsigned int	nlink;
+	unsigned int	owner;
+	unsigned int	group;
+	unsigned int	size;
+	unsigned int	name;
+}					t_maxp;
 
 typedef struct		s_opt {
 	char			rmaj;
@@ -30,8 +47,13 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
+<<<<<<< HEAD
 	char			*arg;
 	int				argc;
+=======
+	char			*arg;//ben
+	struct s_maxp	maxp;
+>>>>>>> opt_l
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -114,4 +136,21 @@ int					open_once(int argc, char **argv);
 
 void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
 
+/*
+ *	time stuff
+*/
+
+char				*get_time(time_t times);
+
+/*
+ *	xattribute
+*/ 
+
+char				get_attr_char(char *path);
+
+/*
+ *	links
+*/
+
+char				*get_symlink(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 #endif

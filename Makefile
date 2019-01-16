@@ -17,7 +17,11 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
+<<<<<<< HEAD
 SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c
+=======
+SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c time_utils.c xattr.c link_utils.c
+>>>>>>> opt_l
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -28,9 +32,13 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
+<<<<<<< HEAD
 OPT		:= .
 
 all: makelib $(NAME)
+=======
+OPT		:= -l .
+>>>>>>> opt_l
 
 makelib:
 	@make -C libft
@@ -45,12 +53,6 @@ diff: all
 ls: all
 	@ls -C $(OPT)
 
-ben: all
-	echo
-	ls -la
-	echo
-	./ft_ls .
-
 d: all
 	@./$(NAME) $(OPT)
 
@@ -59,8 +61,8 @@ l: all
 	@./a.out
 
 val: all
-	@valgrind --leak-check=yes ./a.out
-	@$(RM) a.out*
+	@valgrind --leak-check=yes ./$(NAME)
+	@$(RM) $(NAME)
 
 fsa:
 	@$(COMP) $(LS) -fsanitize=address -g3

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/16 18:02:47 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 18:25:55 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_specs(t_arg *specs)
 	specs->h = 0;
 	specs->mall_len = INIT_LEN;
 	specs->string = NULL;
+	specs->origin = NULL;
 	specs->data_len = 0;
 	specs->extra = 0;
 }
@@ -87,7 +88,10 @@ void	malloc_string(t_arg *specs, int len)
 t_arg	*create_specs(t_arg *specs)
 {
 	if (!(specs = (t_arg *)malloc(sizeof(t_arg))))
+	{
+		ft_putendl("MALLOC");
 		return (NULL);
+	}
 	init_specs(specs);
 	malloc_string(specs, 0);
 	return (specs);

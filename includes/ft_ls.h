@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 21:53:43 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 21:57:18 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,21 @@
 # include <stdlib.h>
 # include "libft.h"
 # include <stdio.h>
+# include <uuid/uuid.h>//ben
+# include <pwd.h>//ben
+# include <grp.h>//ben
+# include <time.h>//ben
+# include <sys/xattr.h>//ben
 
 # define ERROR_MEM error_memory()
+
+typedef struct		s_maxp {
+	unsigned int	nlink;
+	unsigned int	owner;
+	unsigned int	group;
+	unsigned int	size;
+	unsigned int	name;
+}					t_maxp;
 
 typedef struct		s_opt {
 	char			rmaj;
@@ -34,6 +47,7 @@ typedef struct		s_opt {
 	int				argc;
 	int				currargc;
 	int				dircount;
+	struct s_maxp	maxp;
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -72,7 +86,7 @@ int					error_open(char *dir_name);
 int					add_valid_option(char c, t_opt *opt);
 void				add_option(char *str, t_opt *opt);
 void				init_opt(t_opt *opt);
-void				opt_l(t_ldir *ldir, t_opt *opt);
+void				opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
  ** free
@@ -117,4 +131,29 @@ int					open_once(int argc, char **argv);
 void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
 int				is_last(t_ldir *ldir, t_opt *opt);
 
+/*
+ *	opt_l
+*/
+
+void				print_total(t_ldir *ldir, struct stat *filestat,
+		t_opt *opt);
+void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
+
+/*
+ *	time_utils.c
+*/
+
+char				*get_time(time_t times);
+
+/*
+ *	xattr.c
+*/
+
+char				get_attr_char(char *path);
+
+/*
+ *	link_utils.c
+*/
+char				*get_symlink(t_ldir *ldir, struct stat *filestat,
+		t_opt *opt);
 #endif

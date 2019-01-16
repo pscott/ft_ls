@@ -6,11 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/01/16 18:02:47 by pscott           ###   ########.fr       */
-=======
-/*   Updated: 2019/01/14 18:20:29 by penzo            ###   ########.fr       */
->>>>>>> opt_l
+/*   Updated: 2019/01/16 18:25:55 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +27,7 @@ void	init_specs(t_arg *specs)
 	specs->l = 0;
 	specs->dbl = 0;
 	specs->h = 0;
-<<<<<<< HEAD
 	specs->mall_len = INIT_LEN;
-=======
-	specs->mall_len = 100;
->>>>>>> opt_l
 	specs->string = NULL;
 	specs->origin = NULL;
 	specs->data_len = 0;

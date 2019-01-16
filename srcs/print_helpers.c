@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/15 14:07:31 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 19:05:43 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ void	print_opt(t_opt *opt)
 
 void	print_elle(t_ldir *ldir, t_opt *opt)
 {
-	(void)opt;
+	struct stat	filestat;
+
+	print_total(ldir, &filestat, opt);
+	get_max(ldir, &filestat, opt);
 	while (ldir)
 	{
-		if (ldir->next)
-			ft_printf("%s\t", ldir->dir_name);
-		else
-			ft_printf("%s", ldir->dir_name);
+		opt_l(ldir, &filestat, opt);
 		ldir = ldir->next;
 	}
-	write(1, "\n", 1);
 }
 
 void	print_ldir(t_ldir *ldir, t_opt *opt)

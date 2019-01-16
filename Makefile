@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/16 18:10:31 by penzo            ###   ########.fr        #
+#    Updated: 2019/01/16 18:24:48 by penzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-<<<<<<< HEAD
-SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c
-=======
-SRC		:= ft_ls.c arg_parser.c exits.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c time_utils.c xattr.c link_utils.c
->>>>>>> opt_l
+SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -32,13 +28,9 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-<<<<<<< HEAD
 OPT		:= .
 
 all: makelib $(NAME)
-=======
-OPT		:= -l .
->>>>>>> opt_l
 
 makelib:
 	@make -C libft

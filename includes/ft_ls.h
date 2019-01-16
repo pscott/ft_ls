@@ -6,11 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/01/16 18:08:37 by penzo            ###   ########.fr       */
-=======
-/*   Updated: 2019/01/16 15:27:24 by penzo            ###   ########.fr       */
->>>>>>> opt_l
+/*   Updated: 2019/01/16 18:56:35 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +43,9 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
-<<<<<<< HEAD
 	char			*arg;
 	int				argc;
-=======
-	char			*arg;//ben
 	struct s_maxp	maxp;
->>>>>>> opt_l
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -92,7 +84,7 @@ int					error_open(char *dir_name);
 int					add_valid_option(char c, t_opt *opt);
 void				add_option(char *str, t_opt *opt);
 void				init_opt(t_opt *opt);
-void				opt_l(t_ldir *ldir, t_opt *opt);
+void				opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
  ** free
@@ -137,20 +129,14 @@ int					open_once(int argc, char **argv);
 void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
 
 /*
- *	time stuff
+ *	L options stuff
 */
 
 char				*get_time(time_t times);
-
-/*
- *	xattribute
-*/ 
-
 char				get_attr_char(char *path);
-
-/*
- *	links
-*/
-
-char				*get_symlink(t_ldir *ldir, struct stat *filestat, t_opt *opt);
+char				*get_symlink(t_ldir *ldir, struct stat *filestat,
+		t_opt *opt);
+void				print_total(t_ldir *ldir, struct stat *filestat,
+		t_opt *opt);
+void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 #endif

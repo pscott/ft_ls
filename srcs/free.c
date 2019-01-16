@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:47:32 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/10 18:30:58 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 23:17:50 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_ldir(t_ldir *ldir)
 	{
 		tmp = ldir;
 		ft_memdel((void*)&(ldir->path));
+		ft_memdel((void*)&(ldir->dir_name));
 		ldir = ldir->next;
 		ft_memdel((void*)&tmp);
 	}

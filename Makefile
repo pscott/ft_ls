@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/16 21:56:55 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/16 23:05:15 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,9 @@ l: all
 	@$(COMP) test.c
 	@./a.out
 
-val: all
-	@valgrind --leak-check=yes ./$(NAME)
+val: all $(OBJS)
+	@$(COMP) -o $(NAME) $(LS) -g
+	@valgrind --leak-check=yes ./$(NAME) $(OPT)
 	@$(RM) $(NAME)
 
 fsa:

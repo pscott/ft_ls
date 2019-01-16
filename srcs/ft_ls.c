@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 21:57:36 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/16 23:17:50 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_ldir	*create_list(DIR *directory, char *path, t_opt *opt)
 		else
 			add_ldir(&ldir, create_ldir(path, dirent, opt), opt);
 	}
-	while (ldir && ldir->prev)
+	while (ldir->prev)
 		ldir = ldir->prev;
 	return (ldir);
 }
@@ -47,7 +47,8 @@ int		ft_ls(const char *path, t_opt opt)
 		write(1, "\n", 1);
 	if (opt.rmaj)
 		recursion(ldir, &ret, &opt);
-	ft_memdel((void*)&ldir);
+	free_ldir(ldir);
+	printf("NOW: %p\n", ldir);
 	(void)closedir(directory);
 	return (ret);
 }

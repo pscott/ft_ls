@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 18:57:41 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/16 19:35:41 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	permi = get_permi(ldir, filestat->st_mode);
 	passwd = getpwuid(filestat->st_uid);//TODO: if getpwuid fail, print numeric ID
 	group = getgrgid(filestat->st_gid);//TODO: - same -
+	//if getuid fail, redirect to another printf
+	//if ldir->d_type == 2/6, redirect
 	ft_printf("%s%c%*d %*s  %*-s  %*lld %.12s %s%s\n", permi,
 			get_attr_char(append_path(ldir->path, ldir->dir_name, opt)),
 			opt->maxp.nlink, filestat->st_nlink, opt->maxp.owner,

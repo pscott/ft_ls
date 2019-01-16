@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 18:56:35 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/16 19:41:26 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,28 @@ int					open_once(int argc, char **argv);
 void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
 
 /*
- *	L options stuff
+ *	opt_l
 */
 
-char				*get_time(time_t times);
-char				get_attr_char(char *path);
-char				*get_symlink(t_ldir *ldir, struct stat *filestat,
-		t_opt *opt);
 void				print_total(t_ldir *ldir, struct stat *filestat,
 		t_opt *opt);
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
+
+/*
+ *	time_utils.c
+*/
+
+char				*get_time(time_t times);
+
+/*
+ *	xattr.c
+*/
+
+char				get_attr_char(char *path);
+
+/*
+ *	link_utils.c
+*/
+char				*get_symlink(t_ldir *ldir, struct stat *filestat,
+		t_opt *opt);
 #endif

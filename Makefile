@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/16 23:05:15 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/17 15:21:37 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= .
+OPT		:= -R includes/empty
 
 all: makelib $(NAME)
 
@@ -36,8 +36,8 @@ makelib:
 	@make -C libft
 
 diff: all
-	@./$(NAME) $(OPT) > a
-	@ls -C $(OPT) > b
+	@./$(NAME) $(OPT) 1> a
+	@ls -C $(OPT) 1> b
 	@diff a b
 	@$(RM) a
 	@$(RM) b

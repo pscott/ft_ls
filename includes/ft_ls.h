@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 13:06:53 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 17:45:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void				add_right(t_ldir *ldir, t_ldir *new_l);
 void				add_right(t_ldir *ldir, t_ldir *new_l);
 t_ldir				*create_ldir(const char *path, struct dirent *dirent,
 		t_opt *opt);
-void				add_ldir(t_ldir **ldir, t_ldir *newldir, t_opt *opt);
+void				add_ldir(t_ldir **ldir, t_ldir *newldir, int (*selected_func)(const char *, const char *));
 
 /*
  **	append_path
@@ -122,8 +122,7 @@ char				*append_path(const char *path, const char *dir_name,
  ** open_once
 */
 
-void				open_once(int *argc, char **argv, int *ret);
-void				sort_argv(int argc, char **argv);
+void				open_once(int *argc, char **argv, int *ret, t_opt *opt);
 
 /*
  ** recursion
@@ -133,7 +132,7 @@ void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
 int				is_last(t_ldir *ldir, t_opt *opt);
 
 /*
- *	opt_l
+ **	opt_l
 */
 
 void				print_total(t_ldir *ldir, struct stat *filestat,
@@ -141,20 +140,35 @@ void				print_total(t_ldir *ldir, struct stat *filestat,
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
- *	time_utils.c
+ **	time_utils.c
 */
 
 char				*get_time(time_t times);
 
 /*
- *	xattr.c
+ **	xattr.c
 */
 
 char				get_attr_char(char *path);
 
 /*
- *	link_utils.c
+ **	link_utils.c
 */
 char				*get_symlink(t_ldir *ldir, struct stat *filestat,
 		t_opt *opt);
+
+/*
+ ** sorting
+*/
+
+int					(*select_func(t_opt *opt))(const char *, const char *);
+void				sort_argv(int argc, char **argv, t_opt *opt);
+void				reverse_sort_argv(int argc, char **argv, t_opt *opt);
+void				sort_helper(char *s1, char *s2, t_opt *opt);
+
+/*
+ ** reverse
+*/
+
+int					reverse_ft_strcmp(const char *s1, const char *s2);
 #endif

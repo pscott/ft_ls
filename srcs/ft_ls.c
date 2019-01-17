@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 15:23:30 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 17:41:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 t_ldir	*create_list(DIR *directory, char *path, t_opt *opt)
 {
 	struct dirent	*dirent;
+	int				(*selected_func)(const char *, const char *);
 	t_ldir			*ldir;
 
 	ldir = NULL;
+	selected_func = select_func(opt);
 	while ((dirent = readdir(directory)))
 	{
 		if (!ldir)
 			ldir = create_ldir(path, dirent, opt);
 		else
-			add_ldir(&ldir, create_ldir(path, dirent, opt), opt);
+			add_ldir(&ldir, create_ldir(path, dirent, opt), selected_func);
 	}
 	while (ldir && ldir->prev)
 		ldir = ldir->prev;

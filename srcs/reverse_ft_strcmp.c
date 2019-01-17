@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   reverse_ft_strcmp.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 11:26:57 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 17:44:38 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/17 17:43:07 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/17 17:45:11 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int		reverse_ft_strcmp(const char *s1, const char *s2)
 {
 	unsigned char	*us1;
 	unsigned char	*us2;
@@ -22,9 +22,9 @@ int		ft_strcmp(const char *s1, const char *s2)
 	while (*us1 && *us2)
 	{
 		if (*us1 - *us2 != 0)
-			return (*us1 - *us2);
+			return (*us2 - *us1);
 		us1++;
 		us2++;
 	}
-	return (*us1 - *us2);
+	return (*us2 - *us1);
 }

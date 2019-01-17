@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/17 15:21:37 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/17 17:45:25 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c
+SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c sorting.c reverse_ft_strcmp.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -28,7 +28,7 @@ OBJS	:= $(LS:.c=.o)
 DEPS	:= Makefile includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -R includes/empty
+OPT		:= -rt libft includes
 
 all: makelib $(NAME)
 
@@ -63,10 +63,10 @@ fsa:
 	@$(RM) a.out*
 
 $(NAME): $(OBJS)
-	@$(COMP) -o $(NAME) $(LS)
+	$(COMP) -o $(NAME) $(LS)
 	
 %.o: %.c $(DEPS)
-	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
+	$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
 
 clean:
 	@make clean -C libft

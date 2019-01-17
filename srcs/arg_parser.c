@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 15:19:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 16:24:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		parse_arg(int argc, char **argv, t_opt *opt)
 		argv++;
 		argc--;
 	}
-	open_once(&argc, argv, &ret);
+	open_once(&argc, argv, &ret, opt);
 	opt->argc = argc;
 	while (argc > 0)
 	{

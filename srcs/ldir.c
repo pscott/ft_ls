@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/16 23:10:20 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 17:41:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@ void		add_left(t_ldir *c, t_ldir *b)
 	b->next = c;
 }
 
-void		add_ldir(t_ldir **ldir, t_ldir *new, t_opt *opt)
+void		add_ldir(t_ldir **ldir, t_ldir *new, int (*selected_func)(const char *, const char *))
 {
-	(void)opt;
 	if (!new)
 		return ;
-	if (ft_strcmp(new->dir_name, (*ldir)->dir_name) > 0)
+	if ((*selected_func)(new->dir_name, (*ldir)->dir_name) > 0)
 	{
-		while ((*ldir)->next && ft_strcmp(new->dir_name,
+		while ((*ldir)->next && (*selected_func)(new->dir_name,
 					(*ldir)->next->dir_name) > 0)
 			*ldir = (*ldir)->next;
 		add_right(*ldir, new);

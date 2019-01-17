@@ -6,21 +6,17 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 16:43:38 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 18:17:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	rearrange_argv(int i, int argc, char **argv)
+void		rearrange_argv(int i, int argc, char **argv)
 {
-	int j;
+	int	j;
+
 	j = 0;
-	/*while (j < argc)
-	  {
-	  printf("ARGV: %s\n", argv[j]);
-	  j++;
-	  }*/
 	while (i < argc)
 	{
 		argv[i] = argv[i + 1];

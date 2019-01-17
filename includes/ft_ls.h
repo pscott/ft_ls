@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 17:45:08 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 18:34:56 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <sys/xattr.h>//ben
 
 # define ERROR_MEM error_memory()
+
+typedef int			(*t_string_sort) (const char *, const char *);
 
 typedef struct		s_maxp {
 	unsigned int	nlink;
@@ -69,7 +71,7 @@ int					ft_ls(const char *path, t_opt opt);
 */
 
 t_opt				*malloc_opt(void);
-int					parse_arg(int argc, char **argv, t_opt *opt);
+void				parse_arg(int argc, char **argv, int *ret, t_opt *opt);
 
 /*
  ** errors
@@ -109,7 +111,8 @@ void				add_right(t_ldir *ldir, t_ldir *new_l);
 void				add_right(t_ldir *ldir, t_ldir *new_l);
 t_ldir				*create_ldir(const char *path, struct dirent *dirent,
 		t_opt *opt);
-void				add_ldir(t_ldir **ldir, t_ldir *newldir, int (*selected_func)(const char *, const char *));
+void				add_ldir(t_ldir **ldir, t_ldir *newldir,
+		int (*selected_func)(const char *, const char *));
 
 /*
  **	append_path
@@ -128,8 +131,8 @@ void				open_once(int *argc, char **argv, int *ret, t_opt *opt);
  ** recursion
 */
 
-void			recursion(t_ldir *ldir, int *ret, t_opt *opt);
-int				is_last(t_ldir *ldir, t_opt *opt);
+void				recursion(t_ldir *ldir, int *ret, t_opt *opt);
+int					is_last(t_ldir *ldir, t_opt *opt);
 
 /*
  **	opt_l
@@ -161,8 +164,8 @@ char				*get_symlink(t_ldir *ldir, struct stat *filestat,
  ** sorting
 */
 
-int					(*select_func(t_opt *opt))(const char *, const char *);
 void				sort_argv(int argc, char **argv, t_opt *opt);
+t_string_sort		select_func(t_opt *opt);
 void				reverse_sort_argv(int argc, char **argv, t_opt *opt);
 void				sort_helper(char *s1, char *s2, t_opt *opt);
 

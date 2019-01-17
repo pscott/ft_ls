@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 16:24:24 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/17 18:10:16 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/17 18:16:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,37 @@ t_opt	*malloc_opt(void)
 	return (res);
 }
 
-int		parse_arg(int argc, char **argv, t_opt *opt)
+void	reset_opt(int argc, char **argv, t_opt *opt)
 {
-	int ret;
+	opt->arg = *argv;
+	opt->currargc = argc;
+	opt->dircount = 0;
+}
 
-	ret = 0;
-	(argv)++;
+void	parse_arg(int argc, char **argv, int *ret, t_opt *opt)
+{
 	while (argc && argv && *argv && **argv == '-')
 	{
 		add_option(*argv, opt);
 		argv++;
 		argc--;
 	}
-	open_once(&argc, argv, &ret, opt);
+	open_once(&argc, argv, ret, opt);
 	opt->argc = argc;
+	if (!(*argv))
+	{
+		reset_opt(argc, argv, opt);
+		if (ft_ls(".", *opt))
+			*ret = 1;
+	}
 	while (argc > 0)
 	{
-		opt->arg = *argv;
-		opt->currargc = argc;
-		opt->dircount = 0;
+		reset_opt(argc, argv, opt);
 		if (ft_ls(*argv, *opt))
-			ret = 1;
+			*ret = 1;
 		argv++;
 		argc--;
 		if (argc > 0 && !opt->rmaj)
 			write(1, "\n", 1);
 	}
-	return (ret);
 }

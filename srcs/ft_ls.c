@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 17:41:54 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 18:33:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_ldir	*create_list(DIR *directory, char *path, t_opt *opt)
 {
 	struct dirent	*dirent;
-	int				(*selected_func)(const char *, const char *);
+	t_string_sort	selected_func;
 	t_ldir			*ldir;
 
 	ldir = NULL;
@@ -62,7 +62,8 @@ int		main(int argc, char **argv)
 	if (argv)
 		(*argv)++;
 	opt = malloc_opt();
-	ret = parse_arg(argc - 1, argv, opt);
+	(argv)++;
+	parse_arg(argc - 1, argv, &ret, opt);
 	ft_memdel((void*)&opt);
 	return (ret);
 }

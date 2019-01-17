@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:19:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 17:56:59 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 18:34:15 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		(*select_func(t_opt *opt))(const char*, const char *)
+t_string_sort	select_func(t_opt *opt)
 {
 	if (opt->t)
 	{
@@ -25,7 +25,7 @@ int		(*select_func(t_opt *opt))(const char*, const char *)
 	return (ft_strcmp);
 }
 
-void	sort_argv(int argc, char **argv, t_opt *opt)
+void			sort_argv(int argc, char **argv, t_opt *opt)
 {
 	char	*tmp;
 	int		i;

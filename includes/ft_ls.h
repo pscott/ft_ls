@@ -6,8 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 18:48:21 by pscott           ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2019/01/17 22:04:38 by penzo            ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
@@ -37,6 +36,9 @@ typedef struct		s_maxp {
 	unsigned int	group;
 	unsigned int	size;
 	unsigned int	name;
+	unsigned int	major;
+	unsigned int	minor;
+	unsigned int	isdevice;
 }					t_maxp;
 
 typedef struct		s_opt {
@@ -174,4 +176,10 @@ void				sort_helper(char *s1, char *s2, t_opt *opt);
 */
 
 int					reverse_ft_strcmp(const char *s1, const char *s2);
+
+/*
+**	devices_utils.c
+*/
+int					ft_major(int st_rdev);
+int					ft_minor(int st_rdev);
 #endif

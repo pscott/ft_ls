@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xattr.c                                            :+:      :+:    :+:   */
+/*   devices_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 17:40:24 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 20:23:56 by penzo            ###   ########.fr       */
+/*   Created: 2019/01/17 17:22:10 by penzo             #+#    #+#             */
+/*   Updated: 2019/01/17 17:25:48 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	get_attr_char(char *path)
+int		ft_major(int st_rdev)
 {
-	char	c;
-	ssize_t xattr;
+	int		res;
 
-	xattr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
-	//if (xattr < 0)
-	//	xattr = 0;
-	c = '\0';
-	if (xattr > 0)
-		c = '@';
-	//else if (acl != NULL)
-	//	c = '+';
-	else
-		c = ' ';
-	return(c);
+	res = (st_rdev >> 24) & 0xff;
+	return (res);
 }
+
+int		ft_minor(int st_rdev)
+{
+	int		res;
+
+	res = st_rdev & 0xffffff;
+	return (res);
+}
+

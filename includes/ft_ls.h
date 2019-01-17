@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 21:57:18 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 13:06:53 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ char				*append_path(const char *path, const char *dir_name,
  ** open_once
 */
 
-int					open_once(int argc, char **argv);
+void				open_once(int *argc, char **argv, int *ret);
+void				sort_argv(int argc, char **argv);
 
 /*
  ** recursion

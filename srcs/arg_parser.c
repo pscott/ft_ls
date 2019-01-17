@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 19:43:06 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/16 22:46:17 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 15:19:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_opt	*malloc_opt(void)
 int		parse_arg(int argc, char **argv, t_opt *opt)
 {
 	int ret;
-	int modif;
 
 	ret = 0;
 	(argv)++;
@@ -35,9 +34,7 @@ int		parse_arg(int argc, char **argv, t_opt *opt)
 		argv++;
 		argc--;
 	}
-	//TODO:sort_argv(argc, argv);
-	modif = open_once(argc, argv);
-	argc = argc - modif;
+	open_once(&argc, argv, &ret);
 	opt->argc = argc;
 	while (argc > 0)
 	{

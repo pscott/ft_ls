@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/14 19:13:52 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 12:47:07 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		error_open(char *dir_name)
 	else if (errno == 20 || errno == 2)
 		ft_printf("ls: %s: No such file or directory\n", dir_name);
 	else
-		ft_printf("Unknown open error\n");
+	{
+		ft_printf("Unknown open error at address: %p\n", dir_name);
+	}
 	return (1);
 }

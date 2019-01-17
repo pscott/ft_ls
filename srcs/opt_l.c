@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 19:35:41 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/17 13:15:25 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		filetypeletter(t_ldir *ldir, int stat)
 
 	c = 0;
 	//c = '-';//8 = regular file
+	c = ldir->d_type == 1 ? 'p' : c;//character devices
 	c = ldir->d_type == 2 ? 'c' : c;//character devices
 	c = ldir->d_type == 4 ? 'd' : c;//directories
 	c = ldir->d_type == 6 ? 'b' : c;//block devices
@@ -69,18 +70,18 @@ void	get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 
 void	print_total(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 {
-	int		blk;
+	int		blocks_used;
 
-	blk = 0;
+	blocks_used = 0;
 	while(ldir)
 	{
 
 		if (lstat(append_path(ldir->path, ldir->dir_name, opt), filestat) == -1)//TODO: protect
 			ft_printf("error, %s\n", ldir->dir_name);//TODO
-		blk += filestat->st_blocks;
+		blocks_used += filestat->st_blocks;
 		ldir = ldir->next;
 	}
-	ft_printf("total %d\n", blk);
+	ft_printf("total %d\n", blocks_used);
 }
 //TODO make /dev work plz !
 void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)

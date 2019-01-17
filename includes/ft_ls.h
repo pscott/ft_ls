@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 18:34:56 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/17 18:48:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <stdlib.h>
 # include "libft.h"
 # include <stdio.h>
-# include <uuid/uuid.h>//ben
-# include <pwd.h>//ben
-# include <grp.h>//ben
-# include <time.h>//ben
-# include <sys/xattr.h>//ben
+# include <uuid/uuid.h>
+# include <pwd.h>
+# include <grp.h>
+# include <time.h>
+# include <sys/xattr.h>
 
 # define ERROR_MEM error_memory()
 

@@ -13,17 +13,9 @@ if the owner or group names arenot a known user, or -n, the numeric ID is displa
 -r
 -t
 
--A ?
--c
 -d
--F
--f ?
--G
--i
--H
+-c
 -o
--P (cancels -H and -L)
--p
--S
+-i
 -u
 -U

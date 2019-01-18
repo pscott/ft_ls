@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 13:22:22 by penzo            ###   ########.fr       */
+/*   Created: 2019/01/18 20:11:22 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/18 21:58:48 by pscott           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
@@ -47,6 +48,11 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
+	char			c;
+	char			o;
+	char			i;
+	char			u;
+	char			umaj;
 	char			*arg;
 	int				argc;
 	int				currargc;
@@ -58,6 +64,11 @@ typedef struct		s_ldir {
 	char			*path;
 	char			*dir_name;
 	char			d_type;
+	long			u;
+	long			c;
+	long			umaj;
+	long			i;
+	long			t;
 	struct s_ldir	*prev;
 	struct s_ldir	*next;
 }					t_ldir;
@@ -102,7 +113,6 @@ void				free_ldir(t_ldir *ldir);
  ** print_helpers
 */
 
-void				print_opt(t_opt *opt);
 void				print_ldir(t_ldir *ldir, t_opt *opt);
 
 /*
@@ -110,11 +120,13 @@ void				print_ldir(t_ldir *ldir, t_opt *opt);
 */
 
 void				add_right(t_ldir *ldir, t_ldir *new_l);
-void				add_right(t_ldir *ldir, t_ldir *new_l);
+void				add_left(t_ldir *ldir, t_ldir *new_l);
 t_ldir				*create_ldir(const char *path, struct dirent *dirent,
 		t_opt *opt);
 void				add_ldir(t_ldir **ldir, t_ldir *newldir,
 		int (*selected_func)(const char *, const char *));
+void				add_sorted_ldir(t_ldir **ldir, t_ldir *newldir,
+		int	(*selected_func)(const char *, const char *), t_opt *opt);
 
 /*
  **	append_path
@@ -178,13 +190,29 @@ void				sort_helper(char *s1, char *s2, t_opt *opt);
 int					reverse_ft_strcmp(const char *s1, const char *s2);
 
 /*
-**	devices_utils.c
+**	devices_utils
 */
 int					ft_major(int st_rdev);
 int					ft_minor(int st_rdev);
 
 /*
-**	permissions_utils.c
+**	permissions_utils
 */
 void				init_maxp(t_opt *opt);
+
+/*
+** options_adding
+*/
+
+int					add_umaj(t_opt *opt);
+int					add_u(t_opt *opt);
+int					add_c(t_opt *opt);
+
+/*
+** add_sorted_ldir
+*/
+
+void				add_sorted_ldir(t_ldir **ldir, t_ldir *newdir,
+		t_string_sort func, t_opt *opt);
+long				choose_values(t_ldir *ldir, t_ldir *newdi, t_opt *opt);
 #endif

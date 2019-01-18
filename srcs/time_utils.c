@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 15:52:56 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/16 16:09:27 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 21:21:57 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*get_time(time_t times)
 		res[11] = ctime(&times)[23];
 		res[12] = 0;
 		str = ft_strdup(res);//TODO free
-		//free(str);//ca marche ? oui, mais undefined behaviour, ducoup non :(
 		return (str);
 	}
 	else

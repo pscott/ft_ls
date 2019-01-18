@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 22:07:45 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 22:11:36 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	ldir->path = ft_strcpy(ft_strnew(ft_strlen((char*)path)), (char*)path);
 	ldir->dir_name = ft_strcpy(ft_strnew(ft_strlen(dirent->d_name)),
 			dirent->d_name);
-	if (!(newpath = append_path(ldir->path, ldir->dir_name, opt)))
+	if (!(newpath = append_path(ldir->path, ldir->dir_name)))
 		error_memory();
 	stat(newpath, &buf);
 	set_ldir(ldir, &buf, opt);

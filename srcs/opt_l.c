@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:59:48 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 23:32:46 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	set_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 		opt->maxp.major = get_len(ft_major(filestat->st_rdev));
 	if ((unsigned int)get_len(ft_minor(filestat->st_rdev)) > opt->maxp.minor)
 		opt->maxp.minor = get_len(ft_minor(filestat->st_rdev));
+	if (get_ulen(filestat->st_ino) + 1 > opt->maxp.ino_len)
+		opt->maxp.ino_len = get_ulen(filestat->st_ino) + 1;
 	if (ldir->d_type == 2 || ldir->d_type == 6)
 		opt->maxp.isdevice = 1;
 }
@@ -87,6 +89,8 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	lopt.passwd = getpwuid(filestat->st_uid);
 	lopt.group = getgrgid(filestat->st_gid);//TODO: - same -
 	//if getuid fail, redirect to another printf
+	if (!opt->i)
+		opt->maxp.ino_len = 0;
 	if (ldir->d_type == 2 || ldir->d_type == 6)
 		printf_device(ldir, filestat, &lopt, opt);
 	else

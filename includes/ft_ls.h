@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 22:07:08 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 22:52:48 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_maxp {
 	unsigned int	major;
 	unsigned int	minor;
 	unsigned int	isdevice;
+	int				ino_len;
 }					t_maxp;
 
 typedef struct		s_opt {
@@ -166,7 +167,7 @@ void				print_total(t_ldir *ldir, struct stat *filestat);
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
- **	time_utils.c
+ **	time_utils
 */
 
 char				*get_time(time_t times);
@@ -178,7 +179,7 @@ char				*get_time(time_t times);
 char				get_attr_char(char *path);
 
 /*
- **	link_utils.c
+ **	link_utils
 */
 char				*get_symlink(t_ldir *ldir, struct stat *filestat);
 
@@ -227,7 +228,7 @@ int					filetypeletter(t_ldir *ldir, int stat);
 char				*get_permi(t_ldir *ldir, int stat);
 
 /*
-**	printf_select.c
+**	printf_select
 */
 void	printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
@@ -239,8 +240,14 @@ void	printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
 
 /*
-** get_uhlen.c
+** get_uhlen
 */
 
 unsigned int		get_uhlen(unsigned short nb);
+
+/*
+** ino
+*/
+
+char				*ft_ino_itoa(ULL num);
 #endif

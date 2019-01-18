@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/18 21:02:09 by penzo            ###   ########.fr        #
+#    Updated: 2019/01/18 22:03:45 by penzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ dif: all
 	@./$(NAME) $(OPT) 1> a
 	@ls $(OPT) 1> b
 	@diff b a
-	rm a b
+	@rm a b
 
 ls: all
 	@ls -C $(OPT)
 
 d: all
-	./$(NAME) $(OPT)
+	@./$(NAME) $(OPT)
 
 l: all
 	@$(COMP) test.c
@@ -62,10 +62,10 @@ fsa:
 	@$(RM) a.out*
 
 $(NAME): $(OBJS)
-	$(COMP) -o $(NAME) $(LS)
+	@$(COMP) -o $(NAME) $(LS)
 	
 %.o: %.c $(DEPS)
-	$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
+	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
 
 clean:
 	@make clean -C libft

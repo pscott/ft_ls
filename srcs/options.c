@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:07:13 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 19:21:43 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 17:26:45 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		add_valid_option(char c, t_opt *opt)
 		return (opt->r = 1);
 	else if (c == 't')
 		return (opt->t = 1);
+	else if (c == 'o')
+		return (opt->o = 1);
 	return (0);
 }
 

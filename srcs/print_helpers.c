@@ -6,27 +6,17 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/16 22:45:55 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:28:06 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	print_opt(t_opt *opt)
-{
-	ft_printf("\n\t\tOPT\n");
-	ft_printf("R: %d\t", opt->rmaj);
-	ft_printf("a: %d\t", opt->a);
-	ft_printf("l: %d\t", opt->l);
-	ft_printf("r: %d\t", opt->r);
-	ft_printf("t: %d\n", opt->t);
-}
-
 void	print_elle(t_ldir *ldir, t_opt *opt)
 {
 	struct stat	filestat;
 
-	print_total(ldir, &filestat, opt);
+	print_total(ldir, &filestat);
 	get_max(ldir, &filestat, opt);
 	while (ldir)
 	{
@@ -39,7 +29,7 @@ void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
 	if (!ldir)
 		return ;
-	if (opt->l)
+	if (opt->l || opt->o)
 		print_elle(ldir, opt);
 	else
 	{
@@ -49,5 +39,31 @@ void	print_ldir(t_ldir *ldir, t_opt *opt)
 			ldir = ldir->next;
 		}
 		ft_printf("%s\n", ldir->dir_name);
+	}
+}
+
+void	printf_normal(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt)
+{
+	if (opt->o)
+	{
+		printf_normal_o(ldir, filestat, lopt, opt);
+	}
+	else
+	{
+		printf_normal_l(ldir, filestat, lopt, opt);
+	}
+}
+
+void	printf_device(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt)
+{
+	if (opt->o)
+	{
+		printf_device_o(ldir, filestat, lopt, opt);
+	}
+	else
+	{
+		printf_device_l(ldir, filestat, lopt, opt);
 	}
 }

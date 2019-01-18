@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 12:47:07 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 16:57:25 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ int		error_open(char *dir_name)
 		ft_printf("Unknown open error at address: %p\n", dir_name);
 	}
 	return (1);
+}
+
+void	error_stat(void)
+{
+	ft_printf("stat or lstat failed.\n");
+	exit(1);
 }

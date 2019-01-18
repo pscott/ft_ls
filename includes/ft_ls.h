@@ -5,8 +5,9 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 13:22:22 by penzo            ###   ########.fr       */
+/*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
+/*   Updated: 2019/01/18 21:28:27 by penzo            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
@@ -30,6 +31,13 @@
 
 typedef int			(*t_string_sort) (const char *, const char *);
 
+typedef struct		s_lopt {
+	char			*permi;
+	struct passwd	*passwd;
+	struct group	*group;
+	unsigned int	real_size;
+}					t_lopt;
+
 typedef struct		s_maxp {
 	unsigned int	nlink;
 	unsigned int	owner;
@@ -47,6 +55,7 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
+	char			o;
 	char			*arg;
 	int				argc;
 	int				currargc;
@@ -82,6 +91,7 @@ void				parse_arg(int argc, char **argv, int *ret, t_opt *opt);
 void				error_option(char c);
 void				error_memory(void);
 int					error_open(char *dir_name);
+void				error_stat(void);
 
 /*
  ** options
@@ -102,9 +112,11 @@ void				free_ldir(t_ldir *ldir);
  ** print_helpers
 */
 
-void				print_opt(t_opt *opt);
 void				print_ldir(t_ldir *ldir, t_opt *opt);
-
+void				printf_device(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
+void				printf_normal(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
 /*
  ** ldir
 */
@@ -120,8 +132,7 @@ void				add_ldir(t_ldir **ldir, t_ldir *newldir,
  **	append_path
 */
 
-char				*append_path(const char *path, const char *dir_name,
-		t_opt *opt);
+char				*append_path(const char *path, const char *dir_name);
 
 /*
  ** open_once
@@ -140,8 +151,7 @@ int					is_last(t_ldir *ldir, t_opt *opt);
  **	opt_l
 */
 
-void				print_total(t_ldir *ldir, struct stat *filestat,
-		t_opt *opt);
+void				print_total(t_ldir *ldir, struct stat *filestat);
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
@@ -159,8 +169,7 @@ char				get_attr_char(char *path);
 /*
  **	link_utils.c
 */
-char				*get_symlink(t_ldir *ldir, struct stat *filestat,
-		t_opt *opt);
+char				*get_symlink(t_ldir *ldir, struct stat *filestat);
 
 /*
  ** sorting
@@ -187,4 +196,24 @@ int					ft_minor(int st_rdev);
 **	permissions_utils.c
 */
 void				init_maxp(t_opt *opt);
+int					filetypeletter(t_ldir *ldir, int stat);
+char				*get_permi(t_ldir *ldir, int stat);
+
+/*
+**	printf_select.c
+*/
+void	printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt);
+void	printf_device_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt);
+void	printf_normal_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt);
+void	printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt);
+
+/*
+** get_uhlen.c
+*/
+
+unsigned int		get_uhlen(unsigned short nb);
 #endif

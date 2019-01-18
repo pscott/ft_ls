@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xattr.c                                            :+:      :+:    :+:   */
+/*   get_uhlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 17:40:24 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:23:46 by penzo            ###   ########.fr       */
+/*   Created: 2019/01/18 20:57:36 by penzo             #+#    #+#             */
+/*   Updated: 2019/01/18 21:00:46 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-char	get_attr_char(char *path)
+unsigned int	get_uhlen(unsigned short nb)
 {
-	char	c;
-	ssize_t xattr;
+	unsigned int	len;
 
-	xattr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
-	c = '\0';
-	if (xattr > 0)
-		c = '@';
-	else
-		c = ' ';
-	return (c);
+	len = 0;
+	while (nb > 0)
+	{
+		nb /= 10;
+		len++;
+	}
+	return (len == 0 ? 1 : len);
 }

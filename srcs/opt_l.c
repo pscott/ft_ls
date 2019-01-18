@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:59:48 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 23:49:38 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,16 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	if (lstat(path, filestat))
 		error_stat();
 	lopt.permi = get_permi(ldir, filestat->st_mode);
-	lopt.passwd = getpwuid(filestat->st_uid);
-	lopt.group = getgrgid(filestat->st_gid);//TODO: - same -
-	//if getuid fail, redirect to another printf
+	errno = 0;//
+	lopt.passwd = my_getpwuid(lopt.passwd, filestat, opt);//THE GOOD ONE
+	lopt.group = my_getgrgid(lopt.group, filestat, opt);
 	if (ldir->d_type == 2 || ldir->d_type == 6)
 		printf_device(ldir, filestat, &lopt, opt);
 	else
 		printf_normal(ldir, filestat, &lopt, opt);
 	free(path);
+	if (lopt.permi && opt->is_alloc)
+		ft_memdel((void*)&lopt.permi);
+	if (lopt.group && opt->is_alloc)
+		ft_memdel((void*)&lopt.group);
 }

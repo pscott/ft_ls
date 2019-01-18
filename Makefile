@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/18 22:03:45 by penzo            ###   ########.fr        #
+#    Updated: 2019/01/18 23:02:10 by penzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c sorting.c reverse_ft_strcmp.c devices_utils.c permissions_utils.c printf_select.c get_uhlen.c
+SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c sorting.c reverse_ft_strcmp.c devices_utils.c permissions_utils.c printf_select.c get_uhlen.c failed_uid.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft

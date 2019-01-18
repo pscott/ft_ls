@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 20:20:26 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 15:47:26 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ t_ldir	*create_list(DIR *directory, char *path, t_opt *opt)
 	return (ldir);
 }
 
+char	*get_slash(char *path)
+{
+	int i;
+
+	i = ft_strlen(path);
+	while (i)
+	{
+		if (path[i] == '/')
+			return (&path[i] + 1);
+		i--;
+	}
+	return (path);
+}
+
 int		ft_ls(const char *path, t_opt opt)
 {
 	DIR				*directory;
@@ -40,7 +54,7 @@ int		ft_ls(const char *path, t_opt opt)
 
 	ret = 0;
 	if (!(directory = opendir(path)))
-		return (1);
+		return (error_open(get_slash((char*)path)));
 	ldir = create_list(directory, (char*)path, &opt);
 	if (opt.argc > 1)
 		ft_printf("%s:\n", path);

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 19:44:10 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/17 20:41:01 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 15:47:32 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		is_last(t_ldir *ldir, t_opt *opt)
 {
-	//printf("IS_LAST: COUNT: %d\tCURR: %d\n", opt->dircount, opt->currargc);
 	if (opt->dircount <= 0)
 	{
 		if (!ldir || !ldir->next || opt->currargc < 2)
@@ -33,8 +32,8 @@ void	recursion(t_ldir *ldir, int *ret, t_opt *opt)
 		write(1, "\n", 1);
 	while (ldir)
 	{
-		if (ldir->d_type == 4 && (ft_strcmp(ldir->dir_name, ".")
-				&& ft_strcmp(ldir->dir_name, "..")))
+		if ((ldir->d_type == 4 || ldir->d_type == 0) && (ft_strcmp(ldir->dir_name, ".")
+					&& ft_strcmp(ldir->dir_name, "..")))
 		{
 			if (!(newpath = append_path(ldir->path, ldir->dir_name, opt)))
 				return (error_memory());

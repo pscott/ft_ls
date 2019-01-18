@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 22:48:23 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 23:54:18 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_option(char c)
 {
 	ft_printf("ls: illegal option -- %c\n", c);
-	ft_printf("usage: ls [-Ralrt] [file ...]\n");
+	ft_printf("usage: ls [-RUacilortu] [file ...]\n");
 	exit(1);
 }
 

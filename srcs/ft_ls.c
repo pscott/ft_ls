@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 15:47:26 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:59:46 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ t_ldir	*create_list(DIR *directory, char *path, t_opt *opt)
 	{
 		if (!ldir)
 			ldir = create_ldir(path, dirent, opt);
+		else if (opt->t)
+			add_sorted_ldir(&ldir, create_ldir(path, dirent, opt),
+					selected_func, opt);
 		else
 			add_ldir(&ldir, create_ldir(path, dirent, opt), selected_func);
 	}

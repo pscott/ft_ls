@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ino.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/05 19:11:38 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 22:50:13 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/18 22:23:51 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/18 23:40:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_ls.h"
 
-void		ft_uitoa(t_arg *specs, unsigned long long n)
+char				*ft_ino_itoa(ULL n)
 {
 	int		len;
-	int		tmp;
+	char	*res;
 
-	len = ulen(specs, n);
-	tmp = len;
-	realloc_if_necessary(specs, len);
+	len = get_llen(n);
+	if (!(res = ft_strnew(len + 1)))
+		ERROR_MEM;
+	res[len] = ' ';
 	while (n > 9)
 	{
-		specs->string[len - 1] = n % 10 + '0';
+		res[len - 1] = n % 10 + '0';
 		n = n / 10;
 		len--;
 	}
-	specs->string[0] = n + '0';
-	specs->string += tmp;
+	res[0] = n + '0';
+	return (res);
 }

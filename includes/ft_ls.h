@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 23:50:57 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 23:54:05 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_maxp {
 	unsigned int	major;
 	unsigned int	minor;
 	unsigned int	isdevice;
+	int				ino_len;
 }					t_maxp;
 
 typedef struct		s_opt {
@@ -55,7 +56,11 @@ typedef struct		s_opt {
 	char			l;
 	char			r;
 	char			t;
+	char			c;
 	char			o;
+	char			i;
+	char			u;
+	char			umaj;
 	char			*arg;
 	int				argc;
 	int				currargc;
@@ -68,6 +73,11 @@ typedef struct		s_ldir {
 	char			*path;
 	char			*dir_name;
 	char			d_type;
+	long			u;
+	long			c;
+	long			umaj;
+	long			i;
+	long			t;
 	struct s_ldir	*prev;
 	struct s_ldir	*next;
 }					t_ldir;
@@ -124,11 +134,13 @@ void				printf_normal(t_ldir *ldir, struct stat *filestat,
 */
 
 void				add_right(t_ldir *ldir, t_ldir *new_l);
-void				add_right(t_ldir *ldir, t_ldir *new_l);
+void				add_left(t_ldir *ldir, t_ldir *new_l);
 t_ldir				*create_ldir(const char *path, struct dirent *dirent,
 		t_opt *opt);
 void				add_ldir(t_ldir **ldir, t_ldir *newldir,
 		int (*selected_func)(const char *, const char *));
+void				add_sorted_ldir(t_ldir **ldir, t_ldir *newldir,
+		int	(*selected_func)(const char *, const char *), t_opt *opt);
 
 /*
  **	append_path
@@ -157,7 +169,7 @@ void				print_total(t_ldir *ldir, struct stat *filestat);
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
- **	time_utils.c
+ **	time_utils
 */
 
 char				*get_time(time_t times);
@@ -169,7 +181,7 @@ char				*get_time(time_t times);
 char				get_attr_char(char *path);
 
 /*
- **	link_utils.c
+ **	link_utils
 */
 char				*get_symlink(t_ldir *ldir, struct stat *filestat);
 
@@ -189,20 +201,36 @@ void				sort_helper(char *s1, char *s2, t_opt *opt);
 int					reverse_ft_strcmp(const char *s1, const char *s2);
 
 /*
-**	devices_utils.c
+**	devices_utils
 */
 int					ft_major(int st_rdev);
 int					ft_minor(int st_rdev);
 
 /*
-**	permissions_utils.c
+**	permissions_utils
 */
 void				init_maxp(t_opt *opt);
+
+/*
+** options_adding
+*/
+
+int					add_umaj(t_opt *opt);
+int					add_u(t_opt *opt);
+int					add_c(t_opt *opt);
+
+/*
+** add_sorted_ldir
+*/
+
+void				add_sorted_ldir(t_ldir **ldir, t_ldir *newdir,
+		t_string_sort func, t_opt *opt);
+long				choose_values(t_ldir *ldir, t_ldir *newdi, t_opt *opt);
 int					filetypeletter(t_ldir *ldir, int stat);
 char				*get_permi(t_ldir *ldir, int stat);
 
 /*
-**	printf_select.c
+**	printf_select
 */
 void				printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
@@ -214,7 +242,7 @@ void				printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
 
 /*
-** get_uhlen.c
+** get_uhlen
 */
 
 unsigned int		get_uhlen(unsigned short nb);
@@ -227,4 +255,10 @@ struct passwd		*my_getpwuid(struct passwd *passwd, struct stat *filestat,
 		t_opt *opt);
 struct group		*my_getgrgid(struct group *group, struct stat *filestat,
 		t_opt *opt);
+
+/*
+** ino
+*/
+
+char				*ft_ino_itoa(ULL num);
 #endif

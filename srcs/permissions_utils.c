@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:19:35 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:20:07 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 22:54:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_maxp(t_opt *opt)
 	opt->maxp.major = 0;
 	opt->maxp.minor = 0;
 	opt->maxp.isdevice = 0;
+	opt->maxp.ino_len = 0;
 }
 
 int		filetypeletter(t_ldir *ldir, int stat)

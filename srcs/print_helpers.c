@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 21:28:06 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 23:14:04 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,75 @@ void	print_elle(t_ldir *ldir, t_opt *opt)
 	}
 }
 
+int		get_max_ino(t_ldir *ldir)
+{
+	int max;
+	int	this_len;
+
+	max = 0;
+	while (ldir)
+	{
+		this_len = get_llen(ldir->i);
+		if (this_len > max)
+			max = this_len;
+		ldir = ldir->next;
+	}
+	return (max);
+}
+
+int		get_max_len(t_ldir *ldir)
+{
+	int max;
+	int	this_len;
+
+	max = 0;
+	while (ldir)
+	{
+		this_len = ft_strlen(ldir->dir_name);
+		if (this_len > max)
+			max = this_len;
+		ldir = ldir->next;
+	}
+	return (max);
+}
+
+void	print_i(t_ldir *ldir, int max_name)
+{
+	int		max_ino;
+
+	max_ino = get_max_ino(ldir);
+	while (ldir->next)
+	{
+		ft_printf("%*ld %-*s\t", max_ino, ldir->i,
+				max_name, ldir->dir_name);
+		ldir = ldir->next;
+	}
+	ft_printf("%*ld %-*s\n", max_ino, ldir->i,
+			max_name, ldir->dir_name);
+}
+
 void	print_ldir(t_ldir *ldir, t_opt *opt)
 {
+	int		max_name;
+
 	if (!ldir)
 		return ;
 	if (opt->l || opt->o)
 		print_elle(ldir, opt);
 	else
 	{
-		while (ldir->next)
+		max_name = get_max_len(ldir);
+		if (opt->i)
+			print_i(ldir, max_name);
+		else
 		{
-			ft_printf("%s\t", ldir->dir_name);
-			ldir = ldir->next;
+			while (ldir->next)
+			{
+				ft_printf("%-*s\t", max_name, ldir->dir_name);
+				ldir = ldir->next;
+			}
+			ft_printf("%-*s\n", max_name, ldir->dir_name);
 		}
-		ft_printf("%s\n", ldir->dir_name);
 	}
 }
 

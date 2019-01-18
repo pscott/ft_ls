@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   options_adding.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/05 19:11:38 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 22:50:13 by pscott           ###   ########.fr       */
+/*   Created: 2019/01/18 18:27:38 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/18 18:29:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_ls.h"
 
-void		ft_uitoa(t_arg *specs, unsigned long long n)
+int		add_umaj(t_opt *opt)
 {
-	int		len;
-	int		tmp;
+	opt->u = 0;
+	opt->c = 0;
+	return (opt->umaj = 1);
+}
 
-	len = ulen(specs, n);
-	tmp = len;
-	realloc_if_necessary(specs, len);
-	while (n > 9)
-	{
-		specs->string[len - 1] = n % 10 + '0';
-		n = n / 10;
-		len--;
-	}
-	specs->string[0] = n + '0';
-	specs->string += tmp;
+int		add_u(t_opt *opt)
+{
+	opt->umaj = 0;
+	opt->c = 0;
+	return (opt->u = 1);
+}
+
+int		add_c(t_opt *opt)
+{
+	opt->u = 0;
+	opt->umaj = 0;
+	return (opt->c = 1);
 }

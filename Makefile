@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/17 22:05:21 by penzo            ###   ########.fr        #
+#    Updated: 2019/01/18 13:23:58 by penzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME	:= ft_ls
 
 SRCDIR	:= srcs
 
-SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c sorting.c reverse_ft_strcmp.c devices_utils.c
+SRC		:= ft_ls.c arg_parser.c errors.c options.c free.c print_helpers.c ldir.c append_path.c opt_l.c open_once.c recursion.c time_utils.c xattr.c link_utils.c sorting.c reverse_ft_strcmp.c devices_utils.c permissions_utils.c
 INCL	:= -I includes/ -I libft/includes
 
 LIBS	:= -L libft -lft
@@ -35,18 +35,17 @@ all: makelib $(NAME)
 makelib:
 	@make -C libft
 
-diff: all
+dif: all
 	@./$(NAME) $(OPT) 1> a
-	@ls -C $(OPT) 1> b
-	@diff a b
-	@$(RM) a
-	@$(RM) b
+	@ls $(OPT) 1> b
+	@diff b a
+	rm a b
 
 ls: all
 	@ls -C $(OPT)
 
 d: all
-	@./$(NAME) $(OPT)
+	./$(NAME) $(OPT)
 
 l: all
 	@$(COMP) test.c

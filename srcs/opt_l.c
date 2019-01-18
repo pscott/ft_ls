@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 22:02:43 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 13:24:43 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*get_permi(t_ldir *ldir, int stat)
 	ft_strcpy(&bits[4], rwx[(stat >> 3) & 7]);
 	ft_strcpy(&bits[7], rwx[(stat & 7)]);
 	bits[10] = 0;
+	if (stat & S_ISVTX)//degueu, il y a certainement d'autre cas
+		bits[9] = 't';
 	return (bits);
 }
 
@@ -56,18 +58,12 @@ void	get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	struct passwd		*passwd;
 	struct group		*group;
 
-	opt->maxp.nlink = 1;
-	opt->maxp.owner = 0;
-	opt->maxp.group = 5;
-	opt->maxp.size = 0;
-	opt->maxp.major = 0;
-	opt->maxp.minor = 0;
-	opt->maxp.isdevice = 0;
+	init_maxp(opt);
 	while (ldir)
 	{
 		passwd = getpwuid(filestat->st_uid);
 		group = getgrgid(filestat->st_gid);
-		stat(append_path(ldir->path, ldir->dir_name, opt), filestat);//TODO: protect
+		lstat(append_path(ldir->path, ldir->dir_name, opt), filestat);//TODO: protect
 		if (ft_strlen(ft_itoa(filestat->st_nlink)) > opt->maxp.nlink)//nlink
 			opt->maxp.nlink = ft_strlen(ft_itoa(filestat->st_nlink));
 		if (ft_strlen(passwd->pw_name) > opt->maxp.owner)//owner
@@ -82,13 +78,14 @@ void	get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 			opt->maxp.minor = ft_strlen(ft_itoa(ft_minor(filestat->st_rdev)));
 		if (ldir->d_type == 2 || ldir->d_type == 6)
 			opt->maxp.isdevice = 1;
+		//printf("len:%zu max:%d nlink:%d\n", ft_strlen(ft_itoa(filestat->st_nlink)), opt->maxp.nlink, filestat->st_nlink);
 		ldir = ldir->next;
 	}
 	if (opt->maxp.isdevice == 1)
 		opt->maxp.major++;
-	//printf("nlink: %d\nowner: %d\ngroup: %d\nmax: %d
-	printf("max: %d\n", max_a_b(opt->maxp.major + opt->maxp.minor, opt->maxp.size));
-	printf("major: %d, minor: %d, size: %d\n", opt->maxp.major, opt->maxp.minor, opt->maxp.size);
+	//printf("nlink: %d\n", opt->maxp.nlink);
+	//printf("max: %d\n", max_a_b(opt->maxp.major + opt->maxp.minor, opt->maxp.size));
+	//printf("major: %d, minor: %d, size: %d\n", opt->maxp.major, opt->maxp.minor, opt->maxp.size);
 }
 
 void	print_total(t_ldir *ldir, struct stat *filestat, t_opt *opt)
@@ -137,7 +134,8 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 			get_time(filestat->st_mtime),
 			ldir->dir_name, get_symlink(ldir, filestat, opt));
 	else
-		ft_printf("%s%c %*d %*s  %*-s  %*lld %.12s %s%s\n", permi,
+	{
+		ft_printf("%s%c %*d %*-s  %*-s  %*lld %.12s %s%s\n", permi,
 			get_attr_char(append_path(ldir->path, ldir->dir_name, opt)),
 			opt->maxp.nlink, filestat->st_nlink,
 			opt->maxp.owner, passwd->pw_name,
@@ -149,4 +147,5 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 			filestat->st_size,
 			get_time(filestat->st_mtime),
 			ldir->dir_name, get_symlink(ldir, filestat, opt));
+	}
 }

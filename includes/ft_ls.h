@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:51:07 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/17 22:04:38 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/18 13:22:22 by penzo            ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
@@ -182,4 +182,9 @@ int					reverse_ft_strcmp(const char *s1, const char *s2);
 */
 int					ft_major(int st_rdev);
 int					ft_minor(int st_rdev);
+
+/*
+**	permissions_utils.c
+*/
+void				init_maxp(t_opt *opt);
 #endif

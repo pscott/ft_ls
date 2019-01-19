@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 22:52:48 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/18 23:54:05 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct		s_opt {
 	int				currargc;
 	int				dircount;
 	struct s_maxp	maxp;
+	char			is_alloc;
 }					t_opt;
 
 typedef struct		s_ldir {
@@ -102,6 +103,7 @@ void				error_option(char c);
 void				error_memory(void);
 int					error_open(char *dir_name);
 void				error_stat(void);
+void				error_getpwuid_getgrgid(void);
 
 /*
  ** options
@@ -230,13 +232,13 @@ char				*get_permi(t_ldir *ldir, int stat);
 /*
 **	printf_select
 */
-void	printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+void				printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
-void	printf_device_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+void				printf_device_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
-void	printf_normal_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+void				printf_normal_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
-void	printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+void				printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 		t_opt *opt);
 
 /*
@@ -244,6 +246,15 @@ void	printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 */
 
 unsigned int		get_uhlen(unsigned short nb);
+
+/*
+**	failed_uid.c
+*/
+
+struct passwd		*my_getpwuid(struct passwd *passwd, struct stat *filestat,
+		t_opt *opt);
+struct group		*my_getgrgid(struct group *group, struct stat *filestat,
+		t_opt *opt);
 
 /*
 ** ino

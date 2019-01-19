@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 18:55:45 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 20:23:21 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 15:11:36 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,33 @@ long		choose_values(t_ldir *ldir, t_ldir *new, t_opt *opt)
 	return (data1 - data2);
 }
 
+void		choose_is_equal(t_ldir **ldir, t_ldir *new,
+		int (*selected_func)(const char *, const char *), t_opt *opt)
+{
+	if ((*selected_func)(new->dir_name, (*ldir)->dir_name) > 0)
+	{
+		while ((*ldir)->next && choose_values((*ldir)->next, new, opt) == 0
+				&& (*selected_func)(new->dir_name, (*ldir)->next->dir_name) > 0)
+			*ldir = (*ldir)->next;
+		add_right(*ldir, new);
+	}
+	else
+	{
+		while ((*ldir)->prev && choose_values((*ldir)->prev, new, opt) == 0
+				&& (*selected_func)(new->dir_name, (*ldir)->prev->dir_name) < 0)
+			*ldir = (*ldir)->prev;
+		add_left(*ldir, new);
+	}
+}
+
 void		add_sorted_ldir(t_ldir **ldir, t_ldir *new,
 		int (*selected_func)(const char *, const char *), t_opt *opt)
 {
-	if (!new)
+	if (!new || !ldir)
 		return ;
-	if (choose_values((*ldir), new, opt) > 0)
+	if (choose_values((*ldir), new, opt) == 0)
+		choose_is_equal(ldir, new, selected_func, opt);
+	else if (choose_values((*ldir), new, opt) > 0)
 	{
 		while ((*ldir)->next && choose_values((*ldir)->next, new, opt) > 0)
 			*ldir = (*ldir)->next;

@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:59:46 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 14:05:26 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ int		ft_ls(const char *path, t_opt opt)
 
 	ret = 0;
 	if (!(directory = opendir(path)))
-		return (error_open(get_slash((char*)path)));
+	{
+		error_open(get_slash((char*)path));
+		if (opt.rmaj)
+			write(1, "\n", 1);
+		return (1);
+	}
 	ldir = create_list(directory, (char*)path, &opt);
 	if (opt.argc > 1)
 		ft_printf("%s:\n", path);

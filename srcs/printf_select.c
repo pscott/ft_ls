@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 18:48:47 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 23:30:34 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 12:43:39 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 	ino = opt->i ? ft_ino_itoa(filestat->st_ino) : "";
 	path = append_path(ldir->path, ldir->dir_name);
 	symlink = get_symlink(ldir, filestat);
-	printf("%*s%s%c %*d %-*s  %-*s  %*lld %.12s %s%s\n",
+	ft_printf("%*s%s%c %*d %-*s  %-*s  %*lld %.12s %s%s\n",
 			opt->maxp.ino_len, ino,
 			lopt->permi,
 			get_attr_char(path),

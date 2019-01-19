@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/18 22:07:25 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 13:17:00 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	error_option(char c)
 {
-	ft_printf("ls: illegal option -- %c\n", c);
-	ft_printf("usage: ls [-RUacilortu] [file ...]\n");
+	write(2, "ft_ls: illegal option -- ", 25);
+	write(2, &c, 1);
+	write(2, "\n", 1);
+	ft_putstr_fd("usage: ft_ls [-RUacilortu] [file ...]\n", 2);
 	exit(1);
 }
 
@@ -27,19 +29,15 @@ void	error_memory(void)
 
 int		error_open(char *dir_name)
 {
-	if (errno == 13)
-		ft_printf("ls: %s: Permission denied\n", dir_name);
-	else if (errno == 20 || errno == 2)
-		ft_printf("ls: %s: No such file or directory\n", dir_name);
-	else
-	{
-		ft_printf("Unknown open error at address: %p\n", dir_name);
-	}
+	write(2, "ft_ls: ", 7);
+	write(2, dir_name, ft_strlen(dir_name));
+	write(2, ": ", 2);
+	perror("");
 	return (1);
 }
 
 void	error_stat(void)
 {
-	ft_printf("stat or lstat failed.\n");
+	ft_putstr_fd("stat or lstat failed.\n", 2);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 23:54:05 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/19 15:45:44 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+# include <limits.h>
 # include <sys/xattr.h>
 
 # define ERROR_MEM error_memory()

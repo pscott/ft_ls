@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/19 15:45:44 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 19:24:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void				printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 unsigned int		get_uhlen(unsigned short nb);
 
 /*
-**	failed_uid.c
+**	failed_uid
 */
 
 struct passwd		*my_getpwuid(struct passwd *passwd, struct stat *filestat,
@@ -262,4 +262,12 @@ struct group		*my_getgrgid(struct group *group, struct stat *filestat,
 */
 
 char				*ft_ino_itoa(ULL num);
+
+/*
+** lreg
+*/
+
+t_ldir			*create_lreg(char *path, t_opt *opt);
+void			print_lreg(t_ldir *lreg);
+void			free_lreg(t_ldir *lreg);
 #endif

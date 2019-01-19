@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 13:44:34 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/19 13:55:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	error_option(char c)
 
 void	error_memory(void)
 {
-	ft_printf("Couldn't malloc.\n");
+	ft_putstr_fd("Couldn't malloc.\n", 2);
 	exit(1);
 }
 
@@ -44,6 +44,7 @@ void	error_stat(void)
 
 void	error_getpwuid_getgrgid(void)
 {
-	ft_printf("Errr while setting user or group name\n");
+	ft_putstr_fd("Errr while setting user or group name\n", 2);
 	exit (1);
 }
+

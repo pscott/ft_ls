@@ -29,7 +29,7 @@ t_ldir		*create_lreg(char *path, t_opt *opt)
 	return (lreg);
 }
 
-void		print_lreg(t_ldir *lreg)
+void		print_lreg(t_ldir *lreg, int argc)
 {
 	if (!lreg)
 		return ;
@@ -41,6 +41,8 @@ void		print_lreg(t_ldir *lreg)
 		lreg = lreg->next;
 	}
 	ft_printf("%s\n", lreg->dir_name);
+	if (argc > 0)
+		write(1, "\n", 1);
 	//TODO: write"\n" if argc > 1
 	//print_special_l
 }

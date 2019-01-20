@@ -268,6 +268,6 @@ char				*ft_ino_itoa(ULL num);
 */
 
 t_ldir			*create_lreg(char *path, t_opt *opt);
-void			print_lreg(t_ldir *lreg);
+void			print_lreg(t_ldir *lreg, int argc);
 void			free_lreg(t_ldir *lreg);
 #endif

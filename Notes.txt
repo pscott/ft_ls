@@ -19,3 +19,14 @@ if the owner or group names arenot a known user, or -n, the numeric ID is displa
 -i
 -u
 -U
+
+mkdir no_open
+chmod 000 no_open
+./ft_ls -R . 
+ls -R .
+
+ls -rti
+./ft_ls rti
+
+ls -rtu
+./ft_ls rtu

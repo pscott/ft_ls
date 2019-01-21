@@ -56,6 +56,19 @@ void			pop_argv(int *i, int *argc, char **argv)
 	(*i)--;
 }
 
+void			print_argv(char **argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[i])
+	{
+		ft_printf("%s\n", argv[i]);
+		i++;
+	}
+	ft_printf("\n\n");
+}
+
 void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 {
 	int				i;
@@ -68,18 +81,18 @@ void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 	{
 		if (is_not_dir(argv[i], ret, opt) == 1)
 			pop_argv(&i, argc, argv);
-		if (is_not_dir(argv[i], ret, opt) == 2)
+		else if (is_not_dir(argv[i], ret, opt) == 2)
 		{
 			if (!lreg)
 				lreg = create_lreg(argv[i], opt);
 			else
-				add_right(lreg, create_lreg(argv[i], opt));
+				add_right_and_move(&lreg, create_lreg(argv[i], opt));
 			pop_argv(&i, argc, argv);
 		}
 		else if (argv[i][ft_strlen(argv[i] - 1)] == '/'
 				&& readlink(argv[i], tmp, ft_strlen(argv[i])) != -1)
 			argv[i] = tmp;
 	}
-	print_lreg(lreg, *argc);
+	print_lreg(lreg, *argc, opt);
 	free_lreg(lreg);
 }

@@ -16,45 +16,11 @@ void	print_elle(t_ldir *ldir, t_opt *opt)
 {
 	struct stat	filestat;
 
-	print_total(ldir, &filestat);
-	get_max(ldir, &filestat, opt);
-	while (ldir)
+	print_total(ldir, &filestat); get_max(ldir, &filestat, opt); while (ldir)
 	{
 		opt_l(ldir, &filestat, opt);
 		ldir = ldir->next;
 	}
-}
-
-int		get_max_ino(t_ldir *ldir)
-{
-	int max;
-	int	this_len;
-
-	max = 0;
-	while (ldir)
-	{
-		this_len = get_llen(ldir->i);
-		if (this_len > max)
-			max = this_len;
-		ldir = ldir->next;
-	}
-	return (max);
-}
-
-int		get_max_len(t_ldir *ldir)
-{
-	int max;
-	int	this_len;
-
-	max = 0;
-	while (ldir)
-	{
-		this_len = ft_strlen(ldir->dir_name);
-		if (this_len > max)
-			max = this_len;
-		ldir = ldir->next;
-	}
-	return (max);
 }
 
 void	print_i(t_ldir *ldir, int max_name)

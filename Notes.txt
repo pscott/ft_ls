@@ -19,3 +19,8 @@ if the owner or group names arenot a known user, or -n, the numeric ID is displa
 -i
 -u
 -U
+
+TODO:
+./ft_ls . -t		broken: ft_ls se glisse dans notre list
+./ft_ls -l . -a		broken: ft_ls: -l: No such file or directory
+need triple pointeur ?

@@ -24,3 +24,14 @@ TODO:
 ./ft_ls . -t		broken: ft_ls se glisse dans notre list
 ./ft_ls -l . -a		broken: ft_ls: -l: No such file or directory
 need triple pointeur ?
+
+mkdir no_open
+chmod 000 no_open
+./ft_ls -R . 
+ls -R .
+
+ls -rti
+./ft_ls rti
+
+ls -rtu
+./ft_ls rtu

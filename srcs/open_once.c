@@ -31,7 +31,7 @@ static void		rearrange_argv(int i, int argc, char **argv)
 ** Returns 2 if it is not a DIR (i.e. regular file or symlink not ending with /
 */
 
-static int		is_not_dir(char *path, t_opt *opt)
+static int		is_not_dir(char *path, int *ret, t_opt *opt)
 {
 	struct stat filestat;
 
@@ -39,6 +39,7 @@ static int		is_not_dir(char *path, t_opt *opt)
 	if (stat(path, &filestat) == -1)
 	{
 		error_open(path);
+		*ret = 1;
 		return (1);
 	}
 	if (S_ISDIR(filestat.st_mode))
@@ -48,12 +49,24 @@ static int		is_not_dir(char *path, t_opt *opt)
 	return (2);
 }
 
-void			pop_argv(int *i, int *ret, int *argc, char **argv)
+void			pop_argv(int *i, int *argc, char **argv)
 {
 	rearrange_argv(*i, *argc, argv);
 	(*argc)--;
 	(*i)--;
-	*ret = 1;
+}
+
+void			print_argv(char **argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[i])
+	{
+		ft_printf("%s\n", argv[i]);
+		i++;
+	}
+	ft_printf("\n\n");
 }
 
 void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
@@ -66,20 +79,20 @@ void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 	lreg = NULL;
 	while (argv[++i])
 	{
-		if (is_not_dir(argv[i], opt) == 1)
-			pop_argv(&i, ret, argc, argv);
-		if (is_not_dir(argv[i], opt) == 2)
+		if (is_not_dir(argv[i], ret, opt) == 1)
+			pop_argv(&i, argc, argv);
+		else if (is_not_dir(argv[i], ret, opt) == 2)
 		{
 			if (!lreg)
 				lreg = create_lreg(argv[i], opt);
 			else
-				add_right(lreg, create_lreg(argv[i], opt));
-			pop_argv(&i, ret, argc, argv);
+				add_right_and_move(&lreg, create_lreg(argv[i], opt));
+			pop_argv(&i, argc, argv);
 		}
 		else if (argv[i][ft_strlen(argv[i] - 1)] == '/'
 				&& readlink(argv[i], tmp, ft_strlen(argv[i])) != -1)
 			argv[i] = tmp;
 	}
-	print_lreg(lreg);
+	print_lreg(lreg, *argc, opt);
 	free_lreg(lreg);
 }

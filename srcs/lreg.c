@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 12:40:14 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 13:24:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 15:58:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		print_lreg(t_ldir *lreg, int argc, t_opt *opt)
 		lreg = lreg->prev;
 	get_max(lreg, &filestat, opt);
 	max_name = get_max_len(lreg);
-	if (opt->i && !opt->l)
+	if (opt->i && !opt->l && !opt->o)
 		print_i(lreg, max_name);
 	else
 	{
@@ -69,6 +69,10 @@ void		free_lreg(t_ldir *lreg)
 {
 	t_ldir *tmp;
 
+	if (!lreg)
+		return ;
+	while (lreg->prev)
+		lreg = lreg->prev;
 	while (lreg)
 	{
 		tmp = lreg;

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 13:28:47 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 16:01:35 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ char				get_attr_char(char *path);
 /*
  **	link_utils
 */
-char				*get_symlink(t_ldir *ldir, struct stat *filestat);
+char				*get_symlink(t_ldir *ldir);
 
 /*
  ** sorting

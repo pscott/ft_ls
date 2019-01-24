@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 19:44:10 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 13:51:19 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 14:28:23 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		is_last(t_ldir *ldir, t_opt *opt)
 {
 	if (opt->dircount <= 0)
 	{
-		if (!ldir || !ldir->next || opt->currargc < 2)
+		if ((!ldir && opt->currargc < 2) || (!ldir->next && opt->currargc < 2))
 			return (1);
 	}
 	return (0);

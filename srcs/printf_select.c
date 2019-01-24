@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 18:48:47 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 13:24:03 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 16:01:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 
 	ino = opt->i ? ft_ino_itoa(filestat->st_ino) : "";
 	path = append_path(ldir->path, ldir->dir_name);
-	symlink = get_symlink(ldir, filestat);
+	symlink = get_symlink(ldir);
 	time = get_time(filestat, opt);
 	ft_printf("%*s%s%c %*d %-*s  %-*s  %*lld %.12s %s%s\n",
 			opt->maxp.ino_len, ino,
@@ -60,7 +60,7 @@ void	printf_device_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 
 	ino = opt->i ? ft_ino_itoa(filestat->st_ino) : "";
 	path = append_path(ldir->path, ldir->dir_name);
-	symlink = get_symlink(ldir, filestat);
+	symlink = get_symlink(ldir);
 	time = get_time(filestat, opt);
 	ft_printf("%*s%s%c %*d %*-s  %*-s  %*d, %*d %.12s %s%s\n",
 			opt->maxp.ino_len, ino,
@@ -86,7 +86,7 @@ void	printf_normal_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 
 	path = append_path(ldir->path, ldir->dir_name);
 	ino = opt->i ? ft_ino_itoa(filestat->st_ino) : "";
-	symlink = get_symlink(ldir, filestat);
+	symlink = get_symlink(ldir);
 	time = get_time(filestat, opt);
 	ft_printf("%*s%s%c %*d %*-s  %*lld %.12s %s%s\n",
 			opt->maxp.ino_len, ino,
@@ -111,7 +111,7 @@ void	printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
 
 	path = append_path(ldir->path, ldir->dir_name);
 	ino = opt->i ? ft_ino_itoa(filestat->st_ino) : "";
-	symlink = get_symlink(ldir, filestat);
+	symlink = get_symlink(ldir);
 	time = get_time(filestat, opt);
 	ft_printf("%*s%s%c %*d %*-s  %*d, %*d %.12s %s%s\n",
 			opt->maxp.ino_len, ino,

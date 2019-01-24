@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/19 19:24:59 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 11:26:43 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct		s_opt {
 typedef struct		s_ldir {
 	char			*path;
 	char			*dir_name;
-	char			d_type;
+	unsigned int	d_type;
 	long			u;
 	long			c;
 	long			umaj;
@@ -228,7 +228,7 @@ int					add_c(t_opt *opt);
 void				add_sorted_ldir(t_ldir **ldir, t_ldir *newdir,
 		t_string_sort func, t_opt *opt);
 long				choose_values(t_ldir *ldir, t_ldir *newdi, t_opt *opt);
-int					filetypeletter(t_ldir *ldir, int stat);
+int					filetypeletter(t_ldir *ldir);
 char				*get_permi(t_ldir *ldir, int stat);
 
 /*

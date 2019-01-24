@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*   Created: 2019/01/19 17:56:40 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 19:33:52 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 11:30:25 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_ldir		*create_lreg(char *path, t_opt *opt)
 	stat(path, &filestat);
 	lreg->path = NULL; //ft_strcpy(ft_strnew(1), "");
 	lreg->dir_name = path;
+	ldir->d_type = filestat.st_mode;
 	if (opt->i)
 		lreg->i = filestat.st_ino;
 	lreg->next = NULL;

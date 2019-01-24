@@ -6,12 +6,12 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/24 16:46:27 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/24 17:00:30 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:= gcc
-WFLAGS	:= -Wall -Wextra
+WFLAGS	:= -Wall -Wextra -Werror
 RM		:= rm -rf
 NAME	:= ft_ls 
 
@@ -40,31 +40,8 @@ all: $(NAME)
 libft/libft.a:
 	$(MAKE) -C libft -j
 
-dif: all
-	@./$(NAME) $(OPT) > a
-	@ls $(OPT) > b
-	@diff b a
-	@rm a b
-
-ls: all
-	@ls -C $(OPT)
-
 d: all
 	@./$(NAME) $(OPT)
-
-l: all
-	@$(COMP) test.c
-	@./a.out
-
-val: all $(OBJS)
-	@$(COMP) -o $(NAME) $(LS) -g
-	@valgrind --leak-check=yes ./$(NAME) $(OPT)
-	@$(RM) $(NAME)
-
-fsa:
-	@$(COMP) $(LS) -fsanitize=address -g3
-	@./a.out $(OPT)
-	@$(RM) a.out*
 
 $(NAME): $(OBJS) libft/libft.a
 	$(COMP) -o $(NAME) $(LS)

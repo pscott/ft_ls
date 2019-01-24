@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:21:20 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 16:33:45 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 12:37:31 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,5 @@ void	error_stat(void)
 void	error_getpwuid_getgrgid(void)
 {
 	ft_putstr_fd("Errr while setting user or group name\n", 2);
-	exit (1);
+	exit(1);
 }
-

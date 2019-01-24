@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:19:35 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 12:07:38 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 13:19:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		filetypeletter(t_ldir *ldir)
 		c = 's';
 	else
 		c = 'd';
-	return(c);
+	return (c);
 }
 
 char	*get_permi(t_ldir *ldir, int stat)
@@ -58,7 +58,7 @@ char	*get_permi(t_ldir *ldir, int stat)
 	ft_strcpy(&bits[4], rwx[(stat >> 3) & 7]);
 	ft_strcpy(&bits[7], rwx[(stat & 7)]);
 	bits[10] = 0;
-	if (stat & S_ISVTX)//degueu, il y a certainement d'autre cas, mais osef d'apres le sujet
+	if (stat & S_ISVTX)
 		bits[9] = 't';
 	return (bits);
 }

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 19:44:10 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 14:05:34 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 13:51:19 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	recursion(t_ldir *ldir, int *ret, t_opt *opt)
 		write(1, "\n", 1);
 	while (ldir)
 	{
-		if ((ldir->d_type == 4 || ldir->d_type == 0)
+		if ((S_ISDIR(ldir->d_type) || ldir->d_type == 0)
 		&& ft_strcmp(ldir->dir_name, ".") && ft_strcmp(ldir->dir_name, ".."))
 		{
 			if (!(newpath = append_path(ldir->path, ldir->dir_name)))

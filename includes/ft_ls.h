@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 12:02:11 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 13:28:47 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void				printf_device(t_ldir *ldir, struct stat *filestat,
 void				printf_normal(t_ldir *ldir, struct stat *filestat,
 		t_lopt *lopt, t_opt *opt);
 void				print_i(t_ldir *ldir, int max_name);
+void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
+
 /*
  ** ldir
 */
@@ -168,13 +170,12 @@ int					is_last(t_ldir *ldir, t_opt *opt);
 */
 
 void				print_total(t_ldir *ldir, struct stat *filestat);
-void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
 /*
  **	time_utils
 */
 
-char				*get_time(time_t times);
+char				*get_time(struct stat *filestat, t_opt *opt);
 
 /*
  **	xattr.c
@@ -234,14 +235,14 @@ char				*get_permi(t_ldir *ldir, int stat);
 /*
 **	printf_select
 */
-void				printf_normal_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
-		t_opt *opt);
-void				printf_device_l(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
-		t_opt *opt);
-void				printf_normal_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
-		t_opt *opt);
-void				printf_device_o(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
-		t_opt *opt);
+void				printf_normal_l(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
+void				printf_device_l(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
+void				printf_normal_o(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
+void				printf_device_o(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
 
 /*
 ** get_uhlen
@@ -268,16 +269,16 @@ char				*ft_ino_itoa(ULL num);
 ** lreg
 */
 
-t_ldir			*create_lreg(char *path, t_opt *opt);
-void			print_lreg(t_ldir *lreg, int argc, t_opt *opt);
-void			free_lreg(t_ldir *lreg);
-void			add_right_and_move(t_ldir **a, t_ldir *b);
+t_ldir				*create_lreg(char *path, t_opt *opt);
+void				print_lreg(t_ldir *lreg, int argc, t_opt *opt);
+void				free_lreg(t_ldir *lreg);
+void				add_right_and_move(t_ldir **a, t_ldir *b);
 
 /*
 ** get_max
 */
 
-int				get_max_ino(t_ldir *ldir);
-int				get_max_len(t_ldir *ldir);
+int					get_max_ino(t_ldir *ldir);
+int					get_max_len(t_ldir *ldir);
 
 #endif

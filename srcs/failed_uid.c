@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 22:05:37 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 23:50:25 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 12:38:33 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 struct passwd	*my_getpwuid(struct passwd *passwd, struct stat *filestat,
 		t_opt *opt)
 {
-	struct passwd	*backup_passwd;
+	struct passwd	*back_passwd;
 
 	opt->is_alloc = 0;
 	if (!(passwd = getpwuid(filestat->st_uid)))
@@ -24,11 +24,11 @@ struct passwd	*my_getpwuid(struct passwd *passwd, struct stat *filestat,
 			error_getpwuid_getgrgid();
 		else
 		{
-			if (!(backup_passwd = (struct passwd*)malloc(sizeof(struct passwd))))
+			if (!(back_passwd = (struct passwd*)malloc(sizeof(struct passwd))))
 				error_memory();
-			backup_passwd->pw_name = ft_itoa(filestat->st_uid);
+			back_passwd->pw_name = ft_itoa(filestat->st_uid);
 			opt->is_alloc = 1;
-			return (backup_passwd);
+			return (back_passwd);
 		}
 	}
 	return (passwd);

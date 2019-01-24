@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/23 17:01:14 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 13:40:56 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void		rearrange_argv(int i, int argc, char **argv)
 {
-	int	j;//useless ?
-
-	j = 0;//useless ?
 	while (i < argc)
 	{
 		argv[i] = argv[i + 1];
@@ -31,20 +28,24 @@ static void		rearrange_argv(int i, int argc, char **argv)
 ** Returns 2 if it is not a DIR (i.e. regular file or symlink not ending with /
 */
 
-static int		is_not_dir(char *path, int *ret, t_opt *opt)
+static int		get_type(char *path, int *ret, t_opt *opt)
 {
 	struct stat filestat;
 
 	(void)opt;
-	if (stat(path, &filestat) == -1)
+	if (lstat(path, &filestat) == -1)
 	{
 		error_open(path);
 		*ret = 1;
 		return (1);
 	}
-	if (S_ISDIR(filestat.st_mode))
-		return (0);
-	if (S_ISLNK(filestat.st_mode) && path[ft_strlen(path) - 1] == '/')
+	if (S_ISLNK(filestat.st_mode))
+	{
+		if (path[ft_strlen(path) - 1] == '/')
+			return (0);
+		return (2);
+	}
+	else if (S_ISDIR(filestat.st_mode))
 		return (0);
 	return (2);
 }
@@ -79,9 +80,9 @@ void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 	lreg = NULL;
 	while (argv[++i])
 	{
-		if (is_not_dir(argv[i], ret, opt) == 1)
+		if (get_type(argv[i], ret, opt) == 1)
 			pop_argv(&i, argc, argv);
-		else if (is_not_dir(argv[i], ret, opt) == 2)
+		else if (get_type(argv[i], ret, opt) == 2)
 		{
 			if (!lreg)
 				lreg = create_lreg(argv[i], opt);

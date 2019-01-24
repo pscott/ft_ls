@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/19 18:25:23 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 13:43:49 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		ft_ls(const char *path, t_opt opt)
 	int				ret;
 
 	ret = 0;
-
 	if (!(directory = opendir(path)))
 	{
 		error_open(get_slash((char*)path));
@@ -71,7 +70,9 @@ int		ft_ls(const char *path, t_opt opt)
 	if (opt.currargc > 1 && opt.rmaj)
 		write(1, "\n", 1);
 	if (opt.rmaj)
+	{
 		recursion(ldir, &ret, &opt);
+	}
 	free_ldir(ldir);
 	(void)closedir(directory);
 	return (ret);

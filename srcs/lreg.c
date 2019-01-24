@@ -4,8 +4,9 @@
 /*   lreg.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
-/*   Created: 2019/01/19 17:56:40 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 11:30:25 by pscott           ###   ########.fr       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/24 12:40:14 by pscott            #+#    #+#             */
+/*   Updated: 2019/01/24 13:24:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +17,10 @@ t_ldir		*create_lreg(char *path, t_opt *opt)
 	struct stat	filestat;
 	t_ldir		*lreg;
 
-	if (!(lreg =  (t_ldir*)malloc(sizeof(t_ldir))))
+	if (!(lreg = (t_ldir*)malloc(sizeof(t_ldir))))
 		ERROR_MEM;
-	stat(path, &filestat);
-	lreg->path = NULL; //ft_strcpy(ft_strnew(1), "");
+	lstat(path, &filestat);
+	lreg->path = NULL;
 	lreg->dir_name = path;
 	lreg->d_type = filestat.st_mode;
 	if (opt->i)
@@ -38,8 +39,8 @@ void		add_right_and_move(t_ldir **a, t_ldir *b)
 
 void		print_lreg(t_ldir *lreg, int argc, t_opt *opt)
 {
-	int max_name;
-	struct stat	filestat;//benz
+	int			max_name;
+	struct stat	filestat;
 
 	if (!lreg)
 		return ;
@@ -51,18 +52,14 @@ void		print_lreg(t_ldir *lreg, int argc, t_opt *opt)
 		print_i(lreg, max_name);
 	else
 	{
-		while (lreg->next)
+		while (lreg)
 		{
 			if (opt->l || opt->o)
 				opt_l(lreg, &filestat, opt);
 			else
-				ft_printf("%s\t", lreg->dir_name);
+				ft_printf("%s%c", lreg->dir_name, lreg->next ? '\t' : '\n');
 			lreg = lreg->next;
 		}
-		if (opt->l || opt->o)
-			opt_l(lreg, &filestat, opt);
-		else
-			ft_printf("%s\n", lreg->dir_name);
 	}
 	if (argc > 0)
 		write(1, "\n", 1);

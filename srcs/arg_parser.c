@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 18:10:16 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 19:16:36 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 13:41:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	reset_opt(int argc, char **argv, t_opt *opt)
 	opt->currargc = argc;
 	opt->dircount = 0;
 }
-
 
 void	parse_arg(int argc, char **argv, int *ret, t_opt *opt)
 {

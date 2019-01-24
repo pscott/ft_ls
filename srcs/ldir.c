@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 12:01:58 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 12:39:51 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void		set_ldir(t_ldir *ldir, struct stat *buf, t_opt *opt)
 		ldir->i = buf->st_ino;
 	ldir->next = NULL;
 	ldir->prev = NULL;
-	//TODO: ./ft_ls ft_ls
 }
 
 t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)

@@ -130,6 +130,7 @@ void				printf_device(t_ldir *ldir, struct stat *filestat,
 		t_lopt *lopt, t_opt *opt);
 void				printf_normal(t_ldir *ldir, struct stat *filestat,
 		t_lopt *lopt, t_opt *opt);
+void				print_i(t_ldir *ldir, int max_name);
 /*
  ** ldir
 */
@@ -268,6 +269,15 @@ char				*ft_ino_itoa(ULL num);
 */
 
 t_ldir			*create_lreg(char *path, t_opt *opt);
-void			print_lreg(t_ldir *lreg);
+void			print_lreg(t_ldir *lreg, int argc, t_opt *opt);
 void			free_lreg(t_ldir *lreg);
+void			add_right_and_move(t_ldir **a, t_ldir *b);
+
+/*
+** get_max
+*/
+
+int				get_max_ino(t_ldir *ldir);
+int				get_max_len(t_ldir *ldir);
+
 #endif

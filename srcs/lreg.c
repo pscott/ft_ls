@@ -4,7 +4,6 @@
 /*   lreg.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:56:40 by pscott            #+#    #+#             */
 /*   Updated: 2019/01/24 11:30:25 by pscott           ###   ########.fr       */
 /*                                                                            */
@@ -30,20 +29,37 @@ t_ldir		*create_lreg(char *path, t_opt *opt)
 	return (lreg);
 }
 
-void		print_lreg(t_ldir *lreg)
+void		add_right_and_move(t_ldir **a, t_ldir *b)
 {
+	(*a)->next = b;
+	b->prev = *a;
+	*a = (*a)->next;
+}
+
+void		print_lreg(t_ldir *lreg, int argc, t_opt *opt)
+{
+	int max_name;
+
 	if (!lreg)
 		return ;
 	while (lreg->prev)
 		lreg = lreg->prev;
-	while (lreg->next)
+	/*TODO:	if (opt->l || opt->o)
+		print_special_l(lreg, opt);*/
+	max_name = get_max_len(lreg);
+	if (opt->i)
+		print_i(lreg, max_name);
+	else
 	{
-		ft_printf("%s\t", lreg->dir_name);
-		lreg = lreg->next;
+		while (lreg->next)
+		{
+			ft_printf("%s\t", lreg->dir_name);
+			lreg = lreg->next;
+		}
+		ft_printf("%s\n", lreg->dir_name);
 	}
-	ft_printf("%s\n", lreg->dir_name);
-	//TODO: write"\n" if argc > 1
-	//print_special_l
+	if (argc > 0)
+		write(1, "\n", 1);
 }
 
 void		free_lreg(t_ldir *lreg)

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 18:10:16 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 14:09:41 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 17:14:14 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	reset_opt(int argc, char **argv, t_opt *opt)
 
 void	parse_arg(int argc, char **argv, int *ret, t_opt *opt)
 {
-	while (argc && argv && *argv && **argv == '-')
+	while (argc && argv && *argv && **argv == '-' && (*argv)[1] != 0)
 	{
 		add_option(*argv, opt);
 		argv++;

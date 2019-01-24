@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/24 16:36:25 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/24 16:46:27 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ DEPS	:= Makefile includes/ft_ls.h
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
 OPT		:= -loiR /dev/
 
-all: makelib $(NAME)
+all: $(NAME)
 
-makelib:
-	@make -C libft -j
+libft/libft.a:
+	$(MAKE) -C libft -j
 
 dif: all
 	@./$(NAME) $(OPT) > a
@@ -66,11 +66,11 @@ fsa:
 	@./a.out $(OPT)
 	@$(RM) a.out*
 
-$(NAME): $(OBJS)
-	@$(COMP) -o $(NAME) $(LS)
+$(NAME): $(OBJS) libft/libft.a
+	$(COMP) -o $(NAME) $(LS)
 
 %.o: %.c $(DEPS)
-	@$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
+	$(CC) -o $@ -c $< $(WFLAGS) $(INCL)
 
 clean:
 	@make clean -C libft

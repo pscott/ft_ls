@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:19:35 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 11:26:17 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 12:07:38 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		filetypeletter(t_ldir *ldir)
 	else if (S_ISSOCK(ldir->d_type))
 		c = 's';
 	else
-		c = '?';
+		c = 'd';
 	return(c);
 }
 

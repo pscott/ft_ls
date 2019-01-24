@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 18:24:01 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 21:56:40 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/23 17:17:58 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*append_path(const char *path, const char *dir_name)
 	int		pathlen;
 	int		dirlen;
 
+	if (!path)//benz: useless ?
+		return (ft_strdup((char*)dir_name));
 	pathlen = ft_strlen(path);
 	dirlen = ft_strlen(dir_name);
 	len = pathlen + dirlen + 1;

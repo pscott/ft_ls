@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/19 19:33:52 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/23 17:01:14 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void		rearrange_argv(int i, int argc, char **argv)
 {
-	int	j;
+	int	j;//useless ?
 
-	j = 0;
+	j = 0;//useless ?
 	while (i < argc)
 	{
 		argv[i] = argv[i + 1];

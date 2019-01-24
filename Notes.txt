@@ -21,9 +21,6 @@ if the owner or group names arenot a known user, or -n, the numeric ID is displa
 -U
 
 TODO:
-./ft_ls . -t		broken: ft_ls se glisse dans notre list
-./ft_ls -l . -a		broken: ft_ls: -l: No such file or directory
-need triple pointeur ?
 
 mkdir no_open
 chmod 000 no_open
@@ -35,3 +32,5 @@ ls -rti
 
 ls -rtu
 ./ft_ls rtu
+
+./ft_ls -l permi_tmp/link

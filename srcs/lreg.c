@@ -21,7 +21,7 @@ t_ldir		*create_lreg(char *path, t_opt *opt)
 	stat(path, &filestat);
 	lreg->path = NULL; //ft_strcpy(ft_strnew(1), "");
 	lreg->dir_name = path;
-	ldir->d_type = filestat.st_mode;
+	lreg->d_type = filestat.st_mode;
 	if (opt->i)
 		lreg->i = filestat.st_ino;
 	lreg->next = NULL;
@@ -39,24 +39,30 @@ void		add_right_and_move(t_ldir **a, t_ldir *b)
 void		print_lreg(t_ldir *lreg, int argc, t_opt *opt)
 {
 	int max_name;
+	struct stat	filestat;//benz
 
 	if (!lreg)
 		return ;
 	while (lreg->prev)
 		lreg = lreg->prev;
-	/*TODO:	if (opt->l || opt->o)
-		print_special_l(lreg, opt);*/
+	get_max(lreg, &filestat, opt);
 	max_name = get_max_len(lreg);
-	if (opt->i)
+	if (opt->i && !opt->l)
 		print_i(lreg, max_name);
 	else
 	{
 		while (lreg->next)
 		{
-			ft_printf("%s\t", lreg->dir_name);
+			if (opt->l || opt->o)
+				opt_l(lreg, &filestat, opt);
+			else
+				ft_printf("%s\t", lreg->dir_name);
 			lreg = lreg->next;
 		}
-		ft_printf("%s\n", lreg->dir_name);
+		if (opt->l || opt->o)
+			opt_l(lreg, &filestat, opt);
+		else
+			ft_printf("%s\n", lreg->dir_name);
 	}
 	if (argc > 0)
 		write(1, "\n", 1);

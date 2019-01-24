@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 23:53:25 by penzo            ###   ########.fr       */
+/*   Updated: 2019/01/24 11:27:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	set_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 		opt->maxp.minor = get_len(ft_minor(filestat->st_rdev));
 	if (get_ulen(filestat->st_ino) + 1 > opt->maxp.ino_len)
 		opt->maxp.ino_len = get_ulen(filestat->st_ino) + 1;
-	if (ldir->d_type == 2 || ldir->d_type == 6)
+	if (S_ISCHR(ldir->d_type) || S_ISBLK(ldir->d_type))
 		opt->maxp.isdevice = 1;
 }
 
@@ -91,7 +91,7 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	lopt.group = my_getgrgid(lopt.group, filestat, opt);
 	if (!opt->i)
 		opt->maxp.ino_len = 0;
-	if (ldir->d_type == 2 || ldir->d_type == 6)
+	if (S_ISCHR(ldir->d_type) || S_ISBLK(ldir->d_type))
 		printf_device(ldir, filestat, &lopt, opt);
 	else
 		printf_normal(ldir, filestat, &lopt, opt);

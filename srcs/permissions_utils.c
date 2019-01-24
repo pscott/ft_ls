@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:19:35 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/18 22:54:21 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/24 11:26:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,27 @@ void	init_maxp(t_opt *opt)
 	opt->maxp.ino_len = 0;
 }
 
-int		filetypeletter(t_ldir *ldir, int stat)
+int		filetypeletter(t_ldir *ldir)
 {
 	char	c;
 
-	(void)stat;
-	c = 0;
-	c = ldir->d_type == 0 ? 'd' : c;//Degueu
-	c = ldir->d_type == 1 ? 'p' : c;//FIFO
-	c = ldir->d_type == 2 ? 'c' : c;//character devices
-	c = ldir->d_type == 4 ? 'd' : c;//directories
-	c = ldir->d_type == 6 ? 'b' : c;//block devices
-	c = ldir->d_type == 8 ? '-' : c;//ordinaty files
-	c = ldir->d_type == 10 ? 'l' : c;//symlink
-	c = ldir->d_type == 12 ? 's' : c;//socket
-	return (c);
+	if (S_ISREG(ldir->d_type))
+		c = '-';
+	else if (S_ISDIR(ldir->d_type))
+		c = 'd';
+	else if (S_ISBLK(ldir->d_type))
+		c = 'b';
+	else if (S_ISCHR(ldir->d_type))
+		c = 'c';
+	else if (S_ISFIFO(ldir->d_type))
+		c = 'p';
+	else if (S_ISLNK(ldir->d_type))
+		c = 'l';
+	else if (S_ISSOCK(ldir->d_type))
+		c = 's';
+	else
+		c = '?';
+	return(c);
 }
 
 char	*get_permi(t_ldir *ldir, int stat)
@@ -47,7 +53,7 @@ char	*get_permi(t_ldir *ldir, int stat)
 	static const char	*rwx[] = {"---", "--x", "-w-", "-wx", "r--", "r-x",
 		"rw-", "rwx"};
 
-	bits[0] = filetypeletter(ldir, stat);
+	bits[0] = filetypeletter(ldir);
 	ft_strcpy(&bits[1], rwx[(stat >> 6) & 7]);
 	ft_strcpy(&bits[4], rwx[(stat >> 3) & 7]);
 	ft_strcpy(&bits[7], rwx[(stat & 7)]);

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 12:39:01 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 12:44:50 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/25 13:42:49 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	set_max(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 	struct passwd		*passwd;
 	struct group		*group;
 
-	passwd = getpwuid(filestat->st_uid);
-	group = getgrgid(filestat->st_gid);
+	if (!(passwd = getpwuid(filestat->st_uid)))
+		return ;
+	if (!(group = getgrgid(filestat->st_gid)))
+		return ;
 	if (get_uhlen(filestat->st_nlink) > opt->maxp.nlink)
 		opt->maxp.nlink = get_uhlen(filestat->st_nlink);
 	if (ft_strlen(passwd->pw_name) > opt->maxp.owner)

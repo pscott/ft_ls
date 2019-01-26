@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/26 14:35:45 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/26 15:27:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,11 @@ void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 				add_right_and_move(&lreg, create_lreg(argv[i], opt));
 			pop_argv(&i, argc, argv);
 		}
-		else if (argv[i][ft_strlen(argv[i] - 1)] == '/'
+		else if (argv[i][ft_strlen(argv[i]) - 1] == '/'
 				&& readlink(argv[i], tmp, ft_strlen(argv[i])) != -1)
+		{
 			argv[i] = tmp;
+		}
 	}
 	print_lreg(lreg, *argc, opt);
 	free_lreg(lreg);

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 14:02:56 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/26 14:35:45 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int		get_type(char *path, int *ret, t_opt *opt)
 	}
 	if (S_ISLNK(filestat.st_mode))
 	{
+		if (!opt->l)
+			return (0);
 		if (path[ft_strlen(path) - 1] == '/')
 			return (0);
 		return (2);

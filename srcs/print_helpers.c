@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 12:59:55 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 12:41:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/26 14:38:18 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	print_i(t_ldir *ldir, int max_name)
 				max_name, ldir->dir_name);
 		ldir = ldir->next;
 	}
-	ft_printf("%*ld %-*s\n", max_ino, ldir->i,
-			max_name, ldir->dir_name);
+	ft_printf("%*ld %-s\n", max_ino, ldir->i, ldir->dir_name);
 }
 
 void	print_ldir(t_ldir *ldir, t_opt *opt)
@@ -60,7 +59,7 @@ void	print_ldir(t_ldir *ldir, t_opt *opt)
 				ft_printf("%-*s\t", max_name, ldir->dir_name);
 				ldir = ldir->next;
 			}
-			ft_printf("%-*s\n", max_name, ldir->dir_name);
+			ft_printf("%-s\n", ldir->dir_name);
 		}
 	}
 }

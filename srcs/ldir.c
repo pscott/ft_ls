@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 16:19:55 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/26 15:02:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	stat(newpath, &buf);
 	set_ldir(ldir, &buf, opt);
 	ldir->d_type = DTTOIF(dirent->d_type);
-	if ((S_ISDIR(ldir->d_type) || S_ISLNK(ldir->d_type))
+	if ((S_ISDIR(ldir->d_type))// || (S_ISLNK(ldir->d_type) && opt->l))
 		&& ft_strcmp(dirent->d_name, ".") && ft_strcmp("..", dirent->d_name))
 		opt->dircount++;
 	ft_memdel((void*)&newpath);

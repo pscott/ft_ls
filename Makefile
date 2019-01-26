@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 13:54:38 by pscott            #+#    #+#              #
-#    Updated: 2019/01/24 17:10:38 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/26 15:02:40 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ SRCS	:= $(addprefix $(SRCDIR)/, $(SRC))
 LS		:= $(SRCS)
 
 OBJS	:= $(LS:.c=.o)
-DEPS	:= Makefile includes/ft_ls.h
+DEPS	:= includes/ft_ls.h
 
 COMP	:= $(CC) $(WFLAGS) $(INCL) $(LIBS)
-OPT		:= -Rial    -     -ll includes
+OPT		:= -lR 
 
 all: $(NAME)
 
@@ -46,7 +46,7 @@ d: all
 ls: all
 	@ls $(OPT)
 
-$(NAME): $(OBJS) libft/libft.a
+$(NAME): $(OBJS) libft/libft.a Makefile
 	$(COMP) -o $(NAME) $(LS)
 
 %.o: %.c $(DEPS)

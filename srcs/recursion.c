@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 19:44:10 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/24 16:19:54 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/26 15:03:04 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int		is_last(t_ldir *ldir, t_opt *opt)
 	{
 		if (opt->currargc < 2)
 		{
-			if (!ldir)
+			return (1);
+			/*if (!ldir)
 				return (1);
 			if (!ldir->next)
 				return (1);
 			if (ft_strcmp(ldir->dir_name, ".") == 0)
 				return (1);
 			if (ft_strcmp(ldir->dir_name, "..") == 0)
-				return (1);
+				return (1);*/
 		}
 		if ((!ldir && opt->currargc < 2) || (!ldir->next && opt->currargc < 2))
 			return (1);
@@ -38,7 +39,7 @@ void	recursion(t_ldir *ldir, int *ret, t_opt *opt)
 	char	*newpath;
 
 	if (!is_last(ldir, opt))
-		write(1, "\n", 1);
+		write(1, "p\n", 2);
 	while (ldir)
 	{
 		if ((S_ISDIR(ldir->d_type) || ldir->d_type == 0)

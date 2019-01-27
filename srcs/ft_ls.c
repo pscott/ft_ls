@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:50:40 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/26 15:22:13 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/27 12:12:54 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ int		ft_ls(const char *path, t_opt opt)
 		return (1);
 	}
 	ldir = create_list(directory, (char*)path, &opt);
-	print_ldir(ldir, &opt);
-	/*if (opt.currargc > 1 && !opt.rmaj)
-		write(1, "u\n", 2);*/
+	print_select(ldir, &opt);
 	if (opt.rmaj)
 	{
 		recursion(ldir, &ret, &opt);

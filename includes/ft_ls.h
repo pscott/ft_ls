@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:59:57 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 16:01:35 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/27 12:12:02 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,8 @@ void				free_ldir(t_ldir *ldir);
  ** print_helpers
 */
 
-void				print_ldir(t_ldir *ldir, t_opt *opt);
-void				printf_device(t_ldir *ldir, struct stat *filestat,
-		t_lopt *lopt, t_opt *opt);
-void				printf_normal(t_ldir *ldir, struct stat *filestat,
-		t_lopt *lopt, t_opt *opt);
+void				print_select(t_ldir *ldir, t_opt *opt);
+void				print_ldir(t_ldir *ldir, t_opt *opt, int max_name);
 void				print_i(t_ldir *ldir, int max_name);
 void				get_max(t_ldir *ldir, struct stat *filestat, t_opt *opt);
 
@@ -170,6 +167,10 @@ int					is_last(t_ldir *ldir, t_opt *opt);
 */
 
 void				print_total(t_ldir *ldir, struct stat *filestat);
+void				printf_device(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
+void				printf_normal(t_ldir *ldir, struct stat *filestat,
+		t_lopt *lopt, t_opt *opt);
 
 /*
  **	time_utils

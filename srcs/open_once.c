@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:43:19 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/26 15:35:31 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/27 12:24:25 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		get_type(char *path, int *ret, t_opt *opt)
 	}
 	if (S_ISLNK(filestat.st_mode))
 	{
-		if (!opt->l && !opt->o)
+		if (!opt->l && !opt->o && !opt->i)
 			return (0);
 		if (path[ft_strlen(path) - 1] == '/')
 			return (0);
@@ -94,9 +94,7 @@ void			open_once(int *argc, char **argv, int *ret, t_opt *opt)
 		}
 		else if (argv[i][ft_strlen(argv[i]) - 1] == '/'
 				&& readlink(argv[i], tmp, ft_strlen(argv[i])) != -1)
-		{
 			argv[i] = tmp;
-		}
 	}
 	print_lreg(lreg, *argc, opt);
 	free_lreg(lreg);

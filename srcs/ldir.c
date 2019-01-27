@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:26:54 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/26 15:20:04 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/27 12:13:17 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	if (!(ldir = (t_ldir*)malloc(sizeof(t_ldir))))
 		ERROR_MEM;
 	ldir->path = ft_strcpy(ft_strnew(ft_strlen((char*)path)), (char*)path);
-	//ft_printf("D_NAME: %s\n", dirent->d_name);
 	ldir->dir_name = ft_strcpy(ft_strnew(ft_strlen(dirent->d_name)),
 			dirent->d_name);
 	if (!(newpath = append_path(ldir->path, ldir->dir_name)))
@@ -48,7 +47,7 @@ t_ldir		*create_ldir(const char *path, struct dirent *dirent, t_opt *opt)
 	stat(newpath, &buf);
 	set_ldir(ldir, &buf, opt);
 	ldir->d_type = DTTOIF(dirent->d_type);
-	if ((S_ISDIR(ldir->d_type))// || (S_ISLNK(ldir->d_type) && opt->l))
+	if ((S_ISDIR(ldir->d_type))
 		&& ft_strcmp(dirent->d_name, ".") && ft_strcmp("..", dirent->d_name))
 		opt->dircount++;
 	ft_memdel((void*)&newpath);

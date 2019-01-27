@@ -6,7 +6,7 @@
 /*   By: penzo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:25:53 by penzo             #+#    #+#             */
-/*   Updated: 2019/01/24 15:48:02 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/27 12:10:41 by penzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,30 @@ void	opt_l(t_ldir *ldir, struct stat *filestat, t_opt *opt)
 		ft_memdel((void*)&lopt.permi);
 	if (lopt.group && opt->is_alloc)
 		ft_memdel((void*)&lopt.group);
+}
+
+void	printf_normal(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt)
+{
+	if (opt->o)
+	{
+		printf_normal_o(ldir, filestat, lopt, opt);
+	}
+	else
+	{
+		printf_normal_l(ldir, filestat, lopt, opt);
+	}
+}
+
+void	printf_device(t_ldir *ldir, struct stat *filestat, t_lopt *lopt,
+		t_opt *opt)
+{
+	if (opt->o)
+	{
+		printf_device_o(ldir, filestat, lopt, opt);
+	}
+	else
+	{
+		printf_device_l(ldir, filestat, lopt, opt);
+	}
 }
